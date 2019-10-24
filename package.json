@@ -1,0 +1,25 @@
+{
+  "name": "standard-example",
+  "version": "1.0.0",
+  "description": "examples of standard for development",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juicecube/standard-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juicecube/standard-example/issues"
+  },
+  "homepage": "https://github.com/juicecube/standard-example#readme",
+  "dependencies": {
+    "react": "^16.8.6"
+  }
+}
