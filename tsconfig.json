@@ -1,0 +1,11 @@
+{
+  "extends": "./node_modules/@mlz/lint/tsconfig.json",
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    ".storybook",
+  ],
+}
+  
