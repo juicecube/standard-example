@@ -1,11 +1,15 @@
 {
   "extends": "./node_modules/@mlz/lint/tsconfig.json",
+  "compilerOptions": {
+    "module": "ES2015",
+    "jsx": "react"
+  },
   "include": [
     "src/**/*"
   ],
   "exclude": [
     "node_modules",
-    ".storybook",
-  ],
+    "build"
+  ]
 }
   
