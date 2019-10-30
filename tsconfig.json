@@ -1,8 +1,9 @@
 {
   "extends": "./node_modules/@mlz/lint/tsconfig.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "module": "ES2015",
-    "jsx": "react"
+    // "jsx": "react"
   },
   "include": [
     "src/**/*"

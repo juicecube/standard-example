@@ -7,7 +7,11 @@ import livereload from 'rollup-plugin-livereload';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import alias from 'rollup-plugin-alias';
+import postcss from 'rollup-plugin-postcss';
+import autoprefixer from 'autoprefixer';
+import cssnano from 'cssnano';
 import path from 'path';
+import { DEFAULT_EXTENSIONS } from '@babel/core';
 import pkg from './package.json';
 
 const pathResolve = p => path.resolve(__dirname, p);
@@ -26,11 +30,15 @@ export default {
     {
       file: 'build/js/bundle.es.js',
       format: 'es'
+    },
+    {
+      file: 'build/js/bundle.iife.js',
+      format: 'iife'
     }
   ],
-  external: [
-    ...Object.keys(pkg.dependencies || {}),
-  ],
+  // external: [
+  //   ...Object.keys(pkg.dependencies || {}),
+  // ],
   plugins: [
     commonjs(),
     resolve(),
@@ -43,11 +51,15 @@ export default {
         'build'
       ], 
       runtimeHelpers: true,  // 配置runtime，不设置会报错
-      // extensions: [
-      //   ...DEFAULT_EXTENSIONS, // 默认解析.js,.jsx,.es6,.es,.mjs类型的文件
-      //   '.ts',
-      //   '.tsx'
-      // ]
+      extensions: [
+        ...DEFAULT_EXTENSIONS, // 默认解析.js,.jsx,.es6,.es,.mjs类型的文件
+        '.ts',
+        '.tsx'
+      ]
+    }),
+    postcss({
+      plugins: [autoprefixer, cssnano],
+      extract: 'build/css/bundle.css' // 输出路径
     }),
     sourceMaps(),
     serve({  // dev serve
