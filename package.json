@@ -2,13 +2,14 @@
   "name": "standard-example",
   "version": "1.0.0",
   "description": "examples of standard for development",
-  "main": "index.js",
   "directories": {
     "example": "example"
   },
+  "main": "build/js/bundle.umd.js",
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "NODE_ENV=production rollup -c"
+    "build": "npm run clean && NODE_ENV=production rollup -c",
+    "clean": "rm -rf ./build"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,8 @@
   },
   "homepage": "https://github.com/juicecube/standard-example#readme",
   "dependencies": {
-    "react": "^16.8.6"
+    "react": "^16.8.6",
+    "react-dom": "^16.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
@@ -32,6 +34,7 @@
     "@babel/plugin-proposal-function-sent": "^7.0.0",
     "@babel/plugin-proposal-json-strings": "^7.0.0",
     "@babel/plugin-proposal-numeric-separator": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
     "@babel/plugin-proposal-throw-expressions": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-syntax-import-meta": "^7.0.0",
@@ -39,6 +42,7 @@
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
     "@babel/register": "^7.6.2",
     "@mlz/lint": "^1.0.7",
     "@types/react": "^16.9.10",

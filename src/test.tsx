@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export  const test = (name:string) => {
+export const test = (name:string) => {
   console.log(name + '   ssss');
 };
 
