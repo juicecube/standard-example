@@ -16,8 +16,8 @@ const DateList:React.FunctionComponent<DateListProps> = (props) => {
   return(
     <div styleName="container">
       {
-        dateList.map((item,ind) => {
-          return <DateListItemComp date={item.date} isToday={item.isToday} id={item.id} onClick={(id) => onSelect(id)}/>
+        dateList.map((item, ind) => {
+          return <DateListItemComp key={item.id} date={item.date} isToday={item.isToday} id={item.id} onClick={(id) => onSelect(id)}/>
         })
       }
     </div>

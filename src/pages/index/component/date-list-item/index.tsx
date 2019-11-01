@@ -13,7 +13,7 @@ const DateListItem:React.FunctionComponent<DateListItemProps> = (props) => {
 
   const { id, date, isToday, onClick } = props;
   return(
-    <div styleName="container" onClick={() => onClick(id)}>
+    <div styleName="container" onClick={() => onClick(date)}>
       {
         isToday && <span styleName="mark">Today</span>
       }

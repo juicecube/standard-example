@@ -6,16 +6,17 @@ const { useState } = React;
 
 interface MyRadioProps {
   selected:boolean;
-  onChange?:() => {};
+  onChange?:(selected:boolean) => void;
 }
 
 const MyRadio:React.FunctionComponent<MyRadioProps> = (props) => {
 
   const [selected, setSelected] = useState(props.selected);
 
-  const onRadioClick = () => {
+  const onRadioClick = (e:any) => {
+    e.stopPropagation();
     setSelected(!selected);
-    props.onChange && props.onChange();
+    props.onChange && props.onChange(!selected);
   }
 
   return (

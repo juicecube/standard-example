@@ -1,3 +1,7 @@
+import { TodoDataInfo } from 'src/redux/index/index';
+import { fakeData } from './fake-data';
+
+const dataSource = fakeData();
 
 export type FetchDateListRes = {
   id:string;
@@ -18,26 +22,36 @@ export const fetchDateList = () => new Promise((resolve, reject) => {
         date: '2019-11-01',
       }
     ])
-  }, 1000);
+  }, 500);
 });
 
 // 根据日期获取todoList数据
 export const fetchTodoList = (date:string) => new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve([
-      {
-        id: 'ssssss',
-        date: date,
-        isFinished: true,
-        overview: '挣他一个亿',
-      },
-      {
-        id: 'ssssss',
-        date: date,
-        isFinished: false,
-        overview: '买个布加迪威龙',
-        details: '下午4：00飞美利坚洛杉矶，买辆布加迪威龙空运回来',
-      }
-    ])
-  }, 1000);
+    resolve(dataSource.getter(date));
+  }, 500);
+});
+
+// 修改todoList数据
+export const upDateTodoList = (data:TodoDataInfo) => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    dataSource.setter(data);
+    resolve();
+  }, 100);
+});
+
+// 删除todoList数据
+export const DleteTodoList = (id:string) => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    dataSource.remover(id);
+    resolve();
+  }, 100);
+});
+
+// 新增todoList数据
+export const AddTodoList = (date:string) => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const newDataSource = dataSource.adder(date);
+    resolve(newDataSource);
+  }, 100);
 });

@@ -55,6 +55,15 @@ export const index_model = createModel({
         return { ...state, dateList: (action.payload as []) }
       }
     },
+    'index/add_todo_list_data_source': {
+      name: Raw('add_todo_list_data_source'),
+    },
+    'index/delete_todo_list_data_source': {
+      name: Raw('delete_todo_list_data_source'),
+    },
+    'index/update_todo_list_data_source': {
+      name: Raw('update_todo_list_data_source'),
+    },
     'index/update_todo_list': {
       name: Raw('update_todo_list'),
       reducer: (state:IndexState, action:Action<TodoDataInfo[]>) : IndexState => {
@@ -73,6 +82,7 @@ export const index_model = createModel({
 
 // 简单的selector定义在相关的model中
 export const selectSelectedDate = (state:ReduxState) => state.indexState.select_date;
+export const selectTodoList = (state:ReduxState) => state.indexState.todoList;
 // export const selectUserRoom = createSelector(
 //   selectRoomList,
 //   (userReservationId, roomList) => roomList.find(room => room.id === userReservationId)
@@ -82,5 +92,8 @@ export const {
   fetch_date_list,
   update_date_list,
   update_todo_list,
-  update_select_date
+  update_select_date,
+  update_todo_list_data_source,
+  delete_todo_list_data_source,
+  add_todo_list_data_source
 } = index_model.actions;

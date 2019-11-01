@@ -2,6 +2,13 @@
   "extends": "./node_modules/@mlz/lint/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "paths": {
+      "*": [
+        "./types/*"
+      ],
+      "src/*": ["./src/*"],
+      "root": ["."],
+    },          
   },
   "files": [
     "./js_transition.d.ts"
