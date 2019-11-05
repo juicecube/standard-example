@@ -1,4 +1,4 @@
-import { superDate } from 'super-great-utils';
+import { superDate } from '@mlz/super-utils';
 import { FetchDateListRes } from 'example/api/fake-api';
 import { DateListType } from './index';
 

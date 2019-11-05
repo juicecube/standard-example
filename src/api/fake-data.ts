@@ -1,4 +1,4 @@
-import { superDate } from 'super-great-utils';
+import { superDate } from '@mlz/super-utils';
 import { TodoDataInfo, DateListType } from 'example/redux/index/index';
 import { upDateObjectValue } from 'example/utils/index';
 

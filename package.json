@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/juicecube/standard-example#readme",
   "dependencies": {
+    "@mlz/super-utils": "^1.0.5",
     "@types/react-redux": "^7.1.5",
     "@types/react-router": "^5.1.2",
     "@types/react-router-dom": "^5.1.1",
@@ -35,8 +36,7 @@
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.4",
     "redux-saga": "^1.1.1",
-    "reselect": "^4.0.0",
-    "super-great-utils": "^1.0.4"
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
     "@mlz/lint": "^1.0.9",
