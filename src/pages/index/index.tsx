@@ -14,8 +14,10 @@ import {
 import { DateListComp } from './component/date-list';
 import { TodoListComp } from './component/todo-list';
 import { upDateObjectValue } from 'example/utils/index';
+import { todayDateStr } from 'example/api/fake-data';
 
 import './index.scss';
+
 
 // 从map_state_to_props和map_dispatch_to_props返回值推断出组件的props
 type IndexProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
@@ -23,15 +25,21 @@ type IndexProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDisp
 export class Index extends React.PureComponent<IndexProps> {
 
   componentDidMount() {
-    this.props.fetch_date_list();
+   this.props.fetch_date_list();
   }
 
-  onDateListCompSelect = (id:string) => {
-    this.props.update_select_date(id);
+  componentDidUpdate() {
+    const { indexState } = this.props;
+    if (!indexState.select_date){
+      this.props.update_select_date(todayDateStr);
+    }
+  }
+
+  onDateListCompSelect = (date:string) => {
+    this.props.update_select_date(date);
   }
 
   onTodoListChange = (changedData:TodoDataInfo) => {
-    console.log('onTodoListChange', changedData);
     const newData = upDateObjectValue({
       sourceObjectArray: this.props.indexState.todoList,
       key: 'id',
@@ -61,7 +69,7 @@ export class Index extends React.PureComponent<IndexProps> {
         </header>
         <div styleName="container_content">
           <div styleName="content_left">
-            <DateListComp dateList={dateList} onSelect={(id) => this.onDateListCompSelect(id)}/>
+            <DateListComp dateList={dateList} onSelect={(date) => this.onDateListCompSelect(date)} selectedDate={select_date}/>
           </div>
           <div styleName="content_right">
             <TodoListComp

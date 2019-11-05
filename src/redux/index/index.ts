@@ -83,10 +83,6 @@ export const index_model = createModel({
 // 简单的selector定义在相关的model中
 export const selectSelectedDate = (state:ReduxState) => state.indexState.select_date;
 export const selectTodoList = (state:ReduxState) => state.indexState.todoList;
-// export const selectUserRoom = createSelector(
-//   selectRoomList,
-//   (userReservationId, roomList) => roomList.find(room => room.id === userReservationId)
-// );
 
 export const { 
   fetch_date_list,

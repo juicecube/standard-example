@@ -1,5 +1,8 @@
-import { TodoDataInfo } from 'example/redux/index/index';
+import { superDate } from 'super-great-utils';
+import { TodoDataInfo, DateListType } from 'example/redux/index/index';
 import { upDateObjectValue } from 'example/utils/index';
+
+export const todayDateStr = superDate.format(new Date().getTime(), 'yyyy-mm-dd');
 
 const getNewDefaultTodoListItemData = (date:string) => {
   const uuid = new Date().getTime() + '';
@@ -12,7 +15,36 @@ const getNewDefaultTodoListItemData = (date:string) => {
   return newDefaultTodoListItemData;
 }
 
-export const fakeData = () => {
+interface fakeDateListDataType {
+  id:string;
+  date:string;
+}
+export const fakeDateListData = () => {
+  let data:fakeDateListDataType[] = [
+    {
+      id: '123pp',
+      date: '2019-10-31',
+    },
+    {
+      id: '123uu',
+      date: '2019-11-01',
+    },
+    {
+      id: new Date().getTime() + '',
+      date: todayDateStr,
+    }
+  ];
+  return({
+    getter: () => {
+      return data;
+    },
+    adder: (newDataItem:fakeDateListDataType) => {
+      data.push(newDataItem);
+    }
+  });
+}
+
+export const fakeTodoListData = () => {
   let data:TodoDataInfo[] = [
     {
       id: 'ssssss',
@@ -48,7 +80,13 @@ export const fakeData = () => {
       overview: '看电影',
       details: '喜剧？恐怖片？动作？悬疑？',
     },
-
+    {
+      id: 'jjjjjj',
+      date: todayDateStr,
+      isFinished: false,
+      overview: '新的一天',
+      details: '做什么你说了算',
+    },
   ];
   return({
     getter: (date:string) => {

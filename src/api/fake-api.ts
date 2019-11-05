@@ -1,7 +1,8 @@
 import { TodoDataInfo } from 'example/redux/index/index';
-import { fakeData } from './fake-data';
+import { fakeTodoListData, fakeDateListData } from './fake-data';
 
-const dataSource = fakeData();
+const dateListDataSource = fakeDateListData();
+const dataSource = fakeTodoListData();
 
 export type FetchDateListRes = {
   id:string;
@@ -12,16 +13,7 @@ export type FetchDateListRes = {
 // 获取日期列表
 export const fetchDateList = () => new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve([
-      {
-        id: '123pp',
-        date: '2019-10-31',
-      },
-      {
-        id: '123uu',
-        date: '2019-11-01',
-      }
-    ])
+    resolve(dateListDataSource.getter());
   }, 500);
 });
 

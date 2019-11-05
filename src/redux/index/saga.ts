@@ -36,11 +36,8 @@ function* watchFetchTodoList() {
   try {
     while(true) {
       yield take(update_select_date);
-      console.log('watchFetchTodoList');
       const selectedDate = yield select(selectSelectedDate);
-      console.log('selectedDate', selectedDate);
       const res = yield call(fetchTodoList, selectedDate);
-      console.log('todoList', res);
       yield put(update_todo_list(res));
     }
   } catch (error) {
@@ -53,7 +50,6 @@ function* watchUpdateTodoListDataSource () {
     while(true) {
       const action =  yield take(update_todo_list_data_source);
       const newData = action.payload;
-      console.log('watchUpdateTodoListDataSource', newData);
       yield call(upDateTodoList, newData as TodoDataInfo);
     }
   } catch (error) {
@@ -66,7 +62,6 @@ function* watchDeleteTodoListDataSource () {
     while(true) {
       const action =  yield take(delete_todo_list_data_source);
       const newData = action.payload;
-      console.log('watchDeleteTodoListDataSource', newData);
       yield call(DleteTodoList, newData as string);
     }
   } catch (error) {
@@ -80,7 +75,6 @@ function* watchAddTodoListDataSource () {
       const action = yield take(add_todo_list_data_source);
       const date = action.payload;
       const newTodoListDataSource = yield call(AddTodoList, date);
-      console.log('newTodoListDataSource', newTodoListDataSource);
       yield put(update_todo_list(newTodoListDataSource));
     }
   } catch (error) {
