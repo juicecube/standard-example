@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DateListType } from 'src/redux/index/index';
+import { DateListType } from 'example/redux/index/index';
 import { DateListItemComp } from '../date-list-item';
 import './index.scss';
 

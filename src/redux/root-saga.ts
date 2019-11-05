@@ -1,5 +1,5 @@
 import { call, spawn, all } from 'redux-saga/effects';
-import { IndexSaga } from 'src/redux/index/saga';
+import { IndexSaga } from 'example/redux/index/saga';
 
 export function* RootSaga() {
   const sagas = [

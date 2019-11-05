@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ReduxState } from 'src/redux/root-reducer';
+import { ReduxState } from 'example/redux/root-reducer';
 import {
   fetch_date_list,
   update_select_date,
@@ -10,10 +10,10 @@ import {
   add_todo_list_data_source,
   update_todo_list,
   TodoDataInfo
-} from 'src/redux/index';
+} from 'example/redux/index';
 import { DateListComp } from './component/date-list';
 import { TodoListComp } from './component/todo-list';
-import { upDateObjectValue } from 'src/utils/index';
+import { upDateObjectValue } from 'example/utils/index';
 
 import './index.scss';
 

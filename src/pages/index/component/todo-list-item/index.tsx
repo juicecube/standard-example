@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as cn from 'classnames';
-import { MyRadioComp } from 'src/component/my-radio';
-import { TodoDataInfo } from 'src/redux/index/index';
+import { MyRadioComp } from 'example/component/my-radio';
+import { TodoDataInfo } from 'example/redux/index/index';
 
 import './index.scss';
 

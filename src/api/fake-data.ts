@@ -1,5 +1,5 @@
-import { TodoDataInfo } from 'src/redux/index/index';
-import { upDateObjectValue } from 'src/utils/index';
+import { TodoDataInfo } from 'example/redux/index/index';
+import { upDateObjectValue } from 'example/utils/index';
 
 const getNewDefaultTodoListItemData = (date:string) => {
   const uuid = new Date().getTime() + '';

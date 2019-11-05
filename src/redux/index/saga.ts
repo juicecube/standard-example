@@ -10,7 +10,7 @@ import {
   add_todo_list_data_source,
   TodoDataInfo
 } from './index';
-import { fetchDateList, fetchTodoList, upDateTodoList, DleteTodoList, AddTodoList } from 'src/api/fake-api';
+import { fetchDateList, fetchTodoList, upDateTodoList, DleteTodoList, AddTodoList } from 'example/api/fake-api';
 import { handleDateListRes } from './utils';
 
 export function* IndexSaga() {

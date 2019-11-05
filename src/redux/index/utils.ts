@@ -1,5 +1,5 @@
 import { superDate } from 'super-great-utils';
-import { FetchDateListRes } from 'src/api/fake-api';
+import { FetchDateListRes } from 'example/api/fake-api';
 import { DateListType } from './index';
 
 // Pick<IndexState, 'dateList'>

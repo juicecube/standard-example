@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/juicecube/standard-src/issues"
+    "url": "https://github.com/juicecube/standard-example/issues"
   },
   "homepage": "https://github.com/juicecube/standard-example#readme",
   "dependencies": {
@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@mlz/lint": "^1.0.9",
-    "@mlz/pack": "0.0.16",
+    "@mlz/pack": "0.0.19",
     "@types/classnames": "^2.2.9",
     "@types/react": "^16.9.11",
     "@types/react-css-modules": "^4.6.2",

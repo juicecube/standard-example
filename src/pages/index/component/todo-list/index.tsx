@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { TodoDataInfo } from 'src/redux/index/index';
+import { TodoDataInfo } from 'example/redux/index/index';
 import { TodoListItemComp } from '../todo-list-item';
 import './index.scss';
 

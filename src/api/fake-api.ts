@@ -1,4 +1,4 @@
-import { TodoDataInfo } from 'src/redux/index/index';
+import { TodoDataInfo } from 'example/redux/index/index';
 import { fakeData } from './fake-data';
 
 const dataSource = fakeData();
