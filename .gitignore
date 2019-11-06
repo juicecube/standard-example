@@ -3,5 +3,7 @@ build
 
 .npmrc
 
+.vscode
+
 #mac
 *.DS_Store

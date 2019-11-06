@@ -2,12 +2,11 @@ import * as React from 'react';
 import * as cn from 'classnames';
 import './index.scss';
 
-
 interface DateListItemProps {
   id:string;
   date:string;
   isToday:boolean;
-  onClick: (date:string) => void;
+  onClick:(date:string) => void;
   isSelected:boolean;
 }
 
@@ -22,6 +21,6 @@ const DateListItem:React.FunctionComponent<DateListItemProps> = (props) => {
       <span styleName="date">{ date }</span>
     </div>
   );
-}
+};
 
 export const DateListItemComp = React.memo(DateListItem);

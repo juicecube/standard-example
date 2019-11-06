@@ -2,4 +2,7 @@
   "extends": [
     "@mlz/lint/tslint.json"
   ],
+  "rules": {
+    "no-default-export": false
+  }
 }

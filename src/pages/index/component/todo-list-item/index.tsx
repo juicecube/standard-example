@@ -1,10 +1,8 @@
 import * as React from 'react';
 import * as cn from 'classnames';
-import { MyRadioComp } from 'example/component/my-radio';
+import { RadioButtonComp } from 'example/component/radio-button';
 import { TodoDataInfo } from 'example/redux/index/index';
-
 import './index.scss';
-
 const { useState } = React;
 
 interface TodoListItemProps {
@@ -14,9 +12,9 @@ interface TodoListItemProps {
 }
 
 const TodoListItem:React.FunctionComponent<TodoListItemProps> = (props) => {
-  
+
   const { itemData, onChange, onRemove } = props;
-  const { id, date, isFinished, overview , details } = itemData;
+  const { id, isFinished, overview , details } = itemData;
 
   const [showDetails, setShowDetails] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
@@ -26,15 +24,15 @@ const TodoListItem:React.FunctionComponent<TodoListItemProps> = (props) => {
 
   const onContentClick = () => {
     setShowDetails(!showDetails);
-  }
+  };
 
   const onTextAreaChange = (e:any) => {
     setMark(e.target.value);
-  }
+  };
 
   const onEditButtonClick = () => {
     setIsEdit(true);
-  }
+  };
 
   const onSaveButtonClick = () => {
     setIsEdit(false);
@@ -42,27 +40,27 @@ const TodoListItem:React.FunctionComponent<TodoListItemProps> = (props) => {
       ...props.itemData,
       'details': mark,
     });
-  }
+  };
 
   const onRadioClick = (selected:boolean) => {
     onChange({
       ...props.itemData,
       'isFinished': selected,
     });
-  }
+  };
 
   const onDeleteIconClick = () => {
     onRemove(id);
-  }
+  };
 
   const onOverviewClick = (e:any) => {
     e.stopPropagation();
     setOverviewInputing(true);
-  }
+  };
 
   const onOverviewChange = (e:any) => {
     setDisplayOverview(e.target.value);
-  }
+  };
 
   const onOverviewSave = (e:any) => {
     e.stopPropagation();
@@ -71,13 +69,13 @@ const TodoListItem:React.FunctionComponent<TodoListItemProps> = (props) => {
       ...props.itemData,
       'overview': displayOverview,
     });
-  }
+  };
 
   return(
     <div styleName={cn('container', { 'show_details_container': showDetails })}>
       <div styleName="content" onClick={onContentClick}>
         <div styleName="radio middle">
-          <MyRadioComp selected={isFinished} onChange={(selected) => onRadioClick(selected)}/>
+          <RadioButtonComp selected={isFinished} onChange={(selected) => onRadioClick(selected)}/>
         </div>
         <div styleName="overview middle">
           {
@@ -112,6 +110,6 @@ const TodoListItem:React.FunctionComponent<TodoListItemProps> = (props) => {
       </div>
     </div>
   );
-}
+};
 
 export const TodoListItemComp = React.memo(TodoListItem);

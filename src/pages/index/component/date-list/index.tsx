@@ -3,7 +3,6 @@ import { DateListType } from 'example/redux/index/index';
 import { DateListItemComp } from '../date-list-item';
 import './index.scss';
 
-
 interface DateListProps {
   dateList:DateListType[];
   onSelect:(date:string) => void;
@@ -32,6 +31,6 @@ const DateList:React.FunctionComponent<DateListProps> = (props) => {
       }
     </div>
   );
-}
+};
 
 export const DateListComp = React.memo(DateList);

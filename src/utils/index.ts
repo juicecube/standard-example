@@ -1,12 +1,12 @@
 /**
  * 公用方法
  */
-type upDateObjectValueProps = {
+interface UpDateObjectValueProps {
   sourceObjectArray:DefaultObejct[];
   key:string;
   newItem:DefaultObejct;
 }
-export const upDateObjectValue = (props:upDateObjectValueProps) => {
+export const upDateObjectValue = (props:UpDateObjectValueProps) => {
   const { sourceObjectArray, key, newItem } = props;
   const newObjectArray:DefaultObejct[] = [];
   let isNew = true;
@@ -21,4 +21,4 @@ export const upDateObjectValue = (props:upDateObjectValueProps) => {
   });
   isNew && newObjectArray.push(newItem);
   return newObjectArray;
-}
+};

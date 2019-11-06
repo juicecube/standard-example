@@ -4,12 +4,12 @@ import './index.scss';
 
 const { useState } = React;
 
-interface MyRadioProps {
+interface RadioButtonProps {
   selected:boolean;
   onChange?:(selected:boolean) => void;
 }
 
-const MyRadio:React.FunctionComponent<MyRadioProps> = (props) => {
+const RadioButton:React.FunctionComponent<RadioButtonProps> = (props) => {
 
   const [selected, setSelected] = useState(props.selected);
 
@@ -17,11 +17,11 @@ const MyRadio:React.FunctionComponent<MyRadioProps> = (props) => {
     e.stopPropagation();
     setSelected(!selected);
     props.onChange && props.onChange(!selected);
-  }
+  };
 
   return (
     <div styleName={cn('radio', { 'selected': selected })} onClick={onRadioClick}></div>
   );
-}
+};
 
-export const MyRadioComp = React.memo(MyRadio);
+export const RadioButtonComp = React.memo(RadioButton);

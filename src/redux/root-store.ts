@@ -1,5 +1,5 @@
 import {  createStore, applyMiddleware, Middleware, Store } from 'redux';
-import { root_reducer, ReduxState } from './root-reducer';
+import { rootReducer, ReduxState } from './root-reducer';
 import createSagaMiddleware from 'redux-saga';
 import { RootSaga } from './root-saga';
 
@@ -7,26 +7,26 @@ export type StoreType = Store<ReduxState>;
 
 // 创建 saga middleware
 const sagaMiddleware = createSagaMiddleware({
-  onError: (error: Error) => {
+  onError: (error:Error) => {
     // 捕获sagas中未被捕获的错误
     console.log('error is', error);
-  }
+  },
 });
 
-export let create_store =  () : Store<ReduxState> => {
+export let createCustomStore =  () : Store<ReduxState> => {
   const middlewares:Middleware[] = [sagaMiddleware].filter(Boolean);
 
   // 注入 saga middleware
-  const create_store_with_midddleware = applyMiddleware(
+  const createStoreWithMidddleware = applyMiddleware(
     ...middlewares,
   )(createStore);
 
-  const store:any = create_store_with_midddleware(
-    root_reducer,
-    DEBUG && (<any>window).__REDUX_DEVTOOLS_EXTENSION__
-      && (<any>window).__REDUX_DEVTOOLS_EXTENSION__(),
+  const stateStore:any = createStoreWithMidddleware(
+    rootReducer,
+    DEBUG && (window as any).__REDUX_DEVTOOLS_EXTENSION__
+      && (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
   );
-  return store;
+  return stateStore;
 };
-export const store = create_store();
+export const store = createCustomStore();
 sagaMiddleware.run(RootSaga);

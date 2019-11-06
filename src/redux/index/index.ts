@@ -1,21 +1,20 @@
 // 定义actions和reducer
 import { createModel, Raw, Action } from 'rdx-model';
-import { createSelector } from 'reselect';
 import { ReduxState } from '../root-reducer';
 
-export type UserInfoType = {
+export interface UserInfoType {
   userId:string;
   name:string;
   avatar:string;
 }
 
-export type DateListType = {
+export interface DateListType {
   id:string;
   date:string;
   isToday:boolean;
 }
 
-export type TodoDataInfo = {
+export interface TodoDataInfo {
   id:string;
   date:string;
   isFinished:boolean;
@@ -23,7 +22,7 @@ export type TodoDataInfo = {
   details?:string;
 }
 // states
-export type IndexState = {
+export interface IndexState {
   userInfo:UserInfoType;
   dateList:DateListType[];
   todoList:TodoDataInfo[];
@@ -31,7 +30,7 @@ export type IndexState = {
 }
 
 // initial states
-export const default_state:IndexState = {
+export const defaultState:IndexState = {
   userInfo: {
     userId: '',
     name: '未知',
@@ -43,8 +42,8 @@ export const default_state:IndexState = {
 };
 
 // Action && Reducer
-export const index_model = createModel({
-  state: default_state,
+export const indexModel = createModel({
+  state: defaultState,
   reducers: {
     'index/fetch_date_list': {
       name: Raw('fetch_date_list'),
@@ -52,8 +51,8 @@ export const index_model = createModel({
     'index/update_date_list': {
       name: Raw('update_date_list'),
       reducer: (state:IndexState, action:Action<DateListType[]>) : IndexState => {
-        return { ...state, dateList: (action.payload as []) }
-      }
+        return { ...state, dateList: (action.payload as []) };
+      },
     },
     'index/add_todo_list_data_source': {
       name: Raw('add_todo_list_data_source'),
@@ -67,29 +66,28 @@ export const index_model = createModel({
     'index/update_todo_list': {
       name: Raw('update_todo_list'),
       reducer: (state:IndexState, action:Action<TodoDataInfo[]>) : IndexState => {
-        return { ...state, todoList: (action.payload as []) }
-      }
+        return { ...state, todoList: (action.payload as []) };
+      },
     },
     'index/update_select_date': {
       name: Raw('update_select_date'),
       reducer: (state:IndexState, action:Action<string>) : IndexState => {
-        return { ...state, select_date: action.payload || '' }
-      }
+        return { ...state, select_date: action.payload || '' };
+      },
     },
-
-  }
+  },
 });
 
 // 简单的selector定义在相关的model中
 export const selectSelectedDate = (state:ReduxState) => state.indexState.select_date;
 export const selectTodoList = (state:ReduxState) => state.indexState.todoList;
 
-export const { 
+export const {
   fetch_date_list,
   update_date_list,
   update_todo_list,
   update_select_date,
   update_todo_list_data_source,
   delete_todo_list_data_source,
-  add_todo_list_data_source
-} = index_model.actions;
+  add_todo_list_data_source,
+} = indexModel.actions;

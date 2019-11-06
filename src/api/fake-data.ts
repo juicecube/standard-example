@@ -1,5 +1,5 @@
 import { superDate } from '@mlz/super-utils';
-import { TodoDataInfo, DateListType } from 'example/redux/index/index';
+import { TodoDataInfo } from 'example/redux/index/index';
 import { upDateObjectValue } from 'example/utils/index';
 
 export const todayDateStr = superDate.format(new Date().getTime(), 'yyyy-mm-dd');
@@ -8,19 +8,19 @@ const getNewDefaultTodoListItemData = (date:string) => {
   const uuid = new Date().getTime() + '';
   const newDefaultTodoListItemData:TodoDataInfo = {
     id: uuid,
-    date: date,
+    date,
     isFinished: false,
     overview: '默认文案',
-  }
+  };
   return newDefaultTodoListItemData;
-}
+};
 
-interface fakeDateListDataType {
+interface FakeDateListDataType {
   id:string;
   date:string;
 }
 export const fakeDateListData = () => {
-  let data:fakeDateListDataType[] = [
+  const data:FakeDateListDataType[] = [
     {
       id: '123pp',
       date: '2019-10-31',
@@ -32,17 +32,17 @@ export const fakeDateListData = () => {
     {
       id: new Date().getTime() + '',
       date: todayDateStr,
-    }
+    },
   ];
   return({
     getter: () => {
       return data;
     },
-    adder: (newDataItem:fakeDateListDataType) => {
+    adder: (newDataItem:FakeDateListDataType) => {
       data.push(newDataItem);
-    }
+    },
   });
-}
+};
 
 export const fakeTodoListData = () => {
   let data:TodoDataInfo[] = [
@@ -108,6 +108,6 @@ export const fakeTodoListData = () => {
       const newTodoListItem = getNewDefaultTodoListItemData(date);
       data.push(newTodoListItem);
       return data.filter((item) => item.date === date);
-    }
+    },
   });
-}
+};

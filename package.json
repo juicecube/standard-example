@@ -22,9 +22,6 @@
   "homepage": "https://github.com/juicecube/standard-example#readme",
   "dependencies": {
     "@mlz/super-utils": "^1.0.5",
-    "@types/react-redux": "^7.1.5",
-    "@types/react-router": "^5.1.2",
-    "@types/react-router-dom": "^5.1.1",
     "classnames": "^2.2.6",
     "rdx-model": "0.0.2",
     "react": "^16.8.6",
@@ -39,13 +36,16 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
-    "@mlz/lint": "^1.0.9",
+    "@mlz/lint": "^1.0.10",
     "@mlz/pack": "0.0.19",
     "@types/classnames": "^2.2.9",
     "@types/react": "^16.9.11",
     "@types/react-css-modules": "^4.6.2",
     "@types/react-dom": "^16.9.3",
     "@types/react-loadable": "^5.5.2",
+    "@types/react-redux": "^7.1.5",
+    "@types/react-router": "^5.1.2",
+    "@types/react-router-dom": "^5.1.1",
     "@types/redux": "^3.6.0",
     "tslint": "^5.20.0",
     "typescript": "^3.6.4"

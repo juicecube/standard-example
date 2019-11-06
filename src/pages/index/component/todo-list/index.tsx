@@ -32,6 +32,6 @@ const TodoList:React.FunctionComponent<TodoListProps> = (props) => {
       <div styleName="add_new_item" onClick={() => onAdd(date)}>添加</div>
     </div>
   );
-}
+};
 
 export const TodoListComp = React.memo(TodoList);

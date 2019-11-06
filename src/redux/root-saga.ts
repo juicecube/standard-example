@@ -6,16 +6,16 @@ export function* RootSaga() {
     IndexSaga,
   ];
 
-  yield all(sagas.map(saga =>
+  yield all(sagas.map((saga) =>
     spawn(function* () {
       while (true) {
         try {
-          yield call(saga)
-          break
+          yield call(saga);
+          break;
         } catch (e) {
-          console.log(e)
+          console.log(e);
         }
       }
-    }))
+    })),
   );
 }

@@ -8,7 +8,7 @@ import {
   update_todo_list_data_source,
   delete_todo_list_data_source,
   add_todo_list_data_source,
-  TodoDataInfo
+  TodoDataInfo,
 } from './index';
 import { fetchDateList, fetchTodoList, upDateTodoList, DleteTodoList, AddTodoList } from 'example/api/fake-api';
 import { handleDateListRes } from './utils';
@@ -34,7 +34,7 @@ function* watchFetchDateList() {
 
 function* watchFetchTodoList() {
   try {
-    while(true) {
+    while (true) {
       yield take(update_select_date);
       const selectedDate = yield select(selectSelectedDate);
       const res = yield call(fetchTodoList, selectedDate);
@@ -47,7 +47,7 @@ function* watchFetchTodoList() {
 
 function* watchUpdateTodoListDataSource () {
   try {
-    while(true) {
+    while (true) {
       const action =  yield take(update_todo_list_data_source);
       const newData = action.payload;
       yield call(upDateTodoList, newData as TodoDataInfo);
@@ -59,7 +59,7 @@ function* watchUpdateTodoListDataSource () {
 
 function* watchDeleteTodoListDataSource () {
   try {
-    while(true) {
+    while (true) {
       const action =  yield take(delete_todo_list_data_source);
       const newData = action.payload;
       yield call(DleteTodoList, newData as string);
@@ -71,7 +71,7 @@ function* watchDeleteTodoListDataSource () {
 
 function* watchAddTodoListDataSource () {
   try {
-    while(true) {
+    while (true) {
       const action = yield take(add_todo_list_data_source);
       const date = action.payload;
       const newTodoListDataSource = yield call(AddTodoList, date);
@@ -81,6 +81,3 @@ function* watchAddTodoListDataSource () {
     console.log(error);
   }
 }
-
-
-

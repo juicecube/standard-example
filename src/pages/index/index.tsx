@@ -9,15 +9,13 @@ import {
   delete_todo_list_data_source,
   add_todo_list_data_source,
   update_todo_list,
-  TodoDataInfo
+  TodoDataInfo,
 } from 'example/redux/index';
 import { DateListComp } from './component/date-list';
 import { TodoListComp } from './component/todo-list';
 import { upDateObjectValue } from 'example/utils/index';
 import { todayDateStr } from 'example/api/fake-data';
-
 import './index.scss';
-
 
 // 从map_state_to_props和map_dispatch_to_props返回值推断出组件的props
 type IndexProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
@@ -30,7 +28,7 @@ export class Index extends React.PureComponent<IndexProps> {
 
   componentDidUpdate() {
     const { indexState } = this.props;
-    if (!indexState.select_date){
+    if (!indexState.select_date) {
       this.props.update_select_date(todayDateStr);
     }
   }
@@ -60,7 +58,7 @@ export class Index extends React.PureComponent<IndexProps> {
   }
 
   render() {
-    const { indexState } = this.props
+    const { indexState } = this.props;
     const { dateList, select_date, todoList } = indexState;
     return(
       <div styleName="index_container">
@@ -84,7 +82,7 @@ export class Index extends React.PureComponent<IndexProps> {
       </div>
     );
   }
-} 
+}
 
 const mapStateToProps = (state:ReduxState) => ({
   indexState: state.indexState,
@@ -101,5 +99,5 @@ const mapDispatchToProps = (dispatch:any) => bindActionCreators({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Index);

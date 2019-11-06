@@ -4,11 +4,10 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 import { store } from './redux/root-store';
-
 import { routes } from './pages/router';
-require('./commons/css/style.scss');
+import './commons/css/style.scss';
 
-const root_element = document.getElementById('root');
+const rootElement = document.getElementById('root');
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -21,5 +20,5 @@ ReactDOM.render(
       </BrowserRouter>
     </Provider>
   </React.StrictMode>,
-  root_element,
+  rootElement,
 );
