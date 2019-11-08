@@ -21,30 +21,3 @@ export function* onEnterProductDetailPage(action) {
   }
 }
 
-import { put, call } from 'saga-effects'
-import { Api } from 'src/utils/axios'
-import { testSaga } from '../../../testing-utils'
-import { onEnterProductDetailPage } from './saga'
-
-const product = (productId) => ({ productId })
-
-test(`
-  should only save the three recommended products and show ads 
-  when user enters the product detail page 
-  given the user is not a VIP
-`, async () => {
-  const action = { payload: { userId: 233 } }
-  const store = { credentials: { vipList: [2333] } }
-  const recommendedProducts = [product(1), product(2), product(3), product(4)]
-  const firstThreeRecommendations = [product(1), product(2), product(3)]
-  Api.get = jest.fn().mockImplementations(() => recommendedProducts)
-
-  // 跑一遍saga，然后不关系执行的次序，只关心重要的事情，哪些东西是需要做的
-  await testSaga(onEnterProductDetailPage, action, store)
-
-  expect(Api.get).toHaveBeenCalledWith('products/recommended')
-  expect(
-    actions.importantActionToSaveRecommendedProducts
-  ).toHaveBeenDispatchedWith(firstThreeRecommendations)
-  expect(actions.importantActionToFetchAds).toHaveBeenDispatched()
-})

@@ -11,6 +11,10 @@ module.exports = {
     'js',
     'jsx',
   ],
+  transformIgnorePatterns: [
+    '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$',
+    '^.+\\.module\\.(css|sass|scss|less)$',
+  ],
   moduleDirectories: ["node_modules", "src"], 
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|js)x?$',
   coverageDirectory: 'coverage',
