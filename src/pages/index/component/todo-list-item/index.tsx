@@ -12,7 +12,6 @@ interface TodoListItemProps {
 }
 
 const TodoListItem:React.FunctionComponent<TodoListItemProps> = (props) => {
-
   const { itemData, onChange, onRemove } = props;
   const { id, isFinished, overview , details } = itemData;
 

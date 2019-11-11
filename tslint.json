@@ -3,6 +3,7 @@
     "@mlz/lint/tslint.json"
   ],
   "rules": {
-    "no-default-export": false
+    "no-default-export": false,
+    "no-console": false
   }
 }

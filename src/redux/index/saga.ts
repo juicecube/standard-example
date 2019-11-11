@@ -26,17 +26,13 @@ export function* watchFetchDateList() {
     yield take(fetch_date_list);
     const res = yield call(fetchDateList);
     const handledRes = handleDateListRes(res);
-    // {
-    //   payload: [],
-    //   type: 'update_date_list'
-    // }
     yield put(update_date_list(handledRes));
   } catch (error) {
     console.log(error);
   }
 }
 
-function* watchFetchTodoList() {
+export function* watchFetchTodoList() {
   try {
     while (true) {
       yield take(update_select_date);
