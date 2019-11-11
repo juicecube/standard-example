@@ -62,8 +62,6 @@ function* watchDeleteTodoListDataSource () {
     while (true) {
       const action =  yield take(delete_todo_list_data_source);
       const newData = action.payload;
-      // 1. 测试点调用接口的时候是否是正确的参数，这个数据通常是从action中获取，或者redux中获取
-      // 比如这里是从action中的payload中获取到的
       yield call(DleteTodoList, newData as string);
     }
   } catch (error) {
