@@ -16,7 +16,6 @@ module.exports = {
     '^.+\\.module\\.(css|sass|scss|less)$',
   ],
   moduleNameMapper: {
-    // "example/*": ["./src/*"],
     '^example/(.*)$': '<rootDir>/src/$1'
   },
   moduleDirectories: ["node_modules", "src"], 
