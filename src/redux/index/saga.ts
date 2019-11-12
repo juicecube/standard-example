@@ -21,7 +21,7 @@ export function* IndexSaga() {
   yield fork(watchAddTodoListDataSource);
 }
 
-function* watchFetchDateList() {
+export function* watchFetchDateList() {
   try {
     yield take(fetch_date_list);
     const res = yield call(fetchDateList);
@@ -32,7 +32,7 @@ function* watchFetchDateList() {
   }
 }
 
-function* watchFetchTodoList() {
+export function* watchFetchTodoList() {
   try {
     while (true) {
       yield take(update_select_date);
