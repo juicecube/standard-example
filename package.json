@@ -8,7 +8,9 @@
   },
   "scripts": {
     "start": "mlz-pack serve",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cy": "cypress open",
+    "test": "cypress/script.js run",
+    "test:open": "cypress/script.js open"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
   "dependencies": {
     "@mlz/super-utils": "^1.0.5",
     "classnames": "^2.2.6",
+    "commander": "^4.0.0",
     "rdx-model": "0.0.2",
     "react": "^16.8.6",
     "react-css-modules": "^4.7.11",
@@ -47,6 +50,7 @@
     "@types/react-router": "^5.1.2",
     "@types/react-router-dom": "^5.1.1",
     "@types/redux": "^3.6.0",
+    "cypress": "^3.6.0",
     "tslint": "^5.20.0",
     "typescript": "^3.6.4"
   }
