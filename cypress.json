@@ -22,7 +22,7 @@
   "reporterOptions": null,
   "requestTimeout": 5000,
   "responseTimeout": 30000,
-  "screenshotsFolder": null,
+  "screenshotsFolder": "cypress/screenshots",
   "supportFile": "cypress/support",
   "taskTimeout": 60000,
   "testFiles": "**/*.*",

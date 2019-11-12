@@ -12,9 +12,21 @@
 // You can read more here:
 // https://on.cypress.io/configuration
 // ***********************************************************
-
 // Import commands.js using ES2015 syntax:
 import './commands'
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+// Cypress.on('uncaught:exception', (err, runnable) => {
+//   // returning false here prevents Cypress from
+//   // failing the test
+//   // console.log('an error happended：'.red, err);
+//   return false;
+// })
+
+// Cypress.on('fail', (error, runnable) => {
+
+//   // we now have access to the err instance
+//   // and the mocha runnable this failed on
+//   console.log('an error happended：');
+//   throw error // throw error to have test still fail
+// })
+

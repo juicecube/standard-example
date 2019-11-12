@@ -7,3 +7,7 @@ build
 
 #mac
 *.DS_Store
+
+#cypress
+cypress/screenshots
+cypress/videos

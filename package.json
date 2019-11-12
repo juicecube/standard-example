@@ -8,9 +8,7 @@
   },
   "scripts": {
     "start": "mlz-pack serve",
-    "cy": "cypress open",
-    "test": "cypress/script.js run",
-    "test:open": "cypress/script.js open",
+    "test:e2e": "cypress/script.js",
     "test:unit": "jest"
   },
   "repository": {
