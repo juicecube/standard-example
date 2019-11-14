@@ -14,9 +14,13 @@ export const LoginModel = createModel({
     'login/fetch_login': {
       name: Raw('fetch_login'),
     },
+    'login/fetch_register': {
+      name: Raw('fetch_register'),
+    },
   },
 });
 
 export const {
   fetch_login,
+  fetch_register,
 } = LoginModel.actions;

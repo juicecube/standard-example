@@ -1,5 +1,5 @@
 import { TodoDataInfo } from 'example/redux/index/index';
-import { fakeTodoListData, fakeDateListData, fakeUserInfoData } from './fake-data';
+import { fakeTodoListData, fakeDateListData, fakeUserInfoData, AddUserInfoData } from './fake-data';
 
 const dateListDataSource = fakeDateListData();
 const dataSource = fakeTodoListData();
@@ -67,6 +67,18 @@ export const fetchUserInfo = async(userId:string) => new Promise((resolve, rejec
   setTimeout(() => {
     try {
       const res = userInfoDataSource.getter(userId);
+      resolve(res);
+    } catch (e) {
+      reject(e);
+    }
+  }, smallDelayTime);
+});
+
+// 用户注册
+export const register = async(param:AddUserInfoData) => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    try {
+      const res = userInfoDataSource.adder(param);
       resolve(res);
     } catch (e) {
       reject(e);

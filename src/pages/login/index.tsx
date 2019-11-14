@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import * as cn from 'classnames';
-import { fetch_login } from 'example/redux/login/index';
+import { fetch_login, fetch_register } from 'example/redux/login/index';
 import { storeManage, USER_TOKEN, USER_ID } from 'example/utils/storage-manage';
 import { UserInfoFormComp } from 'example/pages/login/components/user-info-form';
+import { AddUserInfoData } from 'example/api/fake-data';
 import './index.scss';
 const { useState } = React;
 
@@ -51,6 +52,20 @@ const Login:React.FunctionComponent<LoginProps> = (props) => {
     setSelectedTab(selected);
   };
 
+  const onRegisterSubmit = (submitData:AddUserInfoData) => {
+    console.log('onRegisterSubmit', submitData);
+    dispatch(fetch_register({
+      userName: submitData.userName,
+      age: submitData.age,
+      gender: submitData.gender,
+      password: submitData.password,
+      cb: (res:any) => {
+        window.alert('注册成功！！');
+        setSelectedTab(LOGIN);
+      },
+    }));
+  }
+
   return (
     <div styleName="login_wrap">
         <div styleName="content_container">
@@ -84,7 +99,7 @@ const Login:React.FunctionComponent<LoginProps> = (props) => {
                   </div>
                 </div>
               : <div styleName="register_container">
-                  <UserInfoFormComp />
+                  <UserInfoFormComp onSubmit={(submitData:AddUserInfoData) => onRegisterSubmit(submitData)} />
                 </div>
           }
         </div>

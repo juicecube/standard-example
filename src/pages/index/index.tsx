@@ -69,7 +69,9 @@ export class Index extends React.PureComponent<IndexProps> {
       <div styleName="index_container">
         <header styleName="container_header">
           <div styleName="container_header_left"><p>TODO LIST</p></div>
-          <div styleName="container_header_right"><AvatarComp userInfo={userInfo}/></div>
+          <div styleName="container_header_right">
+            <AvatarComp userInfo={userInfo}/>
+          </div>
         </header>
         <div styleName="container_content">
           <div styleName="content_left">

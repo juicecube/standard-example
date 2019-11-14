@@ -2,6 +2,7 @@ $main_color: #283646;
 .form_container {
   width: 100%;
   height: 100%;
+  border-radius: 5px;
   padding: 20px 20px;
   background-color: #fff;
 
@@ -42,5 +43,33 @@ $main_color: #283646;
     outline: none;
     background-color: #FFFFFF;
     color: rgba(0, 0, 0, 0.87);
+  }
+  .option_container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 40px;
+  }
+  .submit_button {
+    width: 80px;
+    height: 35px;
+    color: white;
+    background-color: #1890ff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      border: 2px solid white;
+    }
+  }
+  .validateError {
+    height: 25px;
+    color: red;
+    border: 1px solid red;
+    font-size: 14px;
+    line-height: 25px;
+    text-align: center;
+    margin-left: 10px;
+    padding: 0 5px;
   }
 }

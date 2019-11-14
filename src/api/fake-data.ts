@@ -118,7 +118,14 @@ export interface UserInfoData {
   password:string;
   avatar:string;
   age:number;
-  gender:'M'|'W'|'';
+  gender:'男'|'女'|'';
+}
+
+export interface AddUserInfoData {
+  userName:string;
+  password:string;
+  age:number|undefined;
+  gender:'男'|'女'|'';
 }
 
 export const fakeUserInfoData = () => {
@@ -129,7 +136,7 @@ export const fakeUserInfoData = () => {
       password: 'faker1234',
       avatar: '',
       age: 23,
-      gender: 'M',
+      gender: '男',
     },
   ];
 
@@ -142,7 +149,11 @@ export const fakeUserInfoData = () => {
       delete resData[0].password;
       return resData[0];
     },
-    adder: (newItem:any) => {
+    adder: (newItem:AddUserInfoData) => {
+      const userInfo = data.filter((item) => item.userName === newItem.userName);
+      if (userInfo.length > 0) {
+        throw new Error('该用户名已存在');
+      }
       const userId = new Date().getTime() + '';
       const newDataItem = {
         userName: newItem.userName || '',
@@ -150,9 +161,10 @@ export const fakeUserInfoData = () => {
         password: newItem.password,
         avatar: '',
         age: newItem.age || 0,
-        gender: newItem.gender || 'M',
+        gender: newItem.gender,
       };
       data.push(newDataItem);
+      return true;
     },
     checker: (loginData:any) => {
       const { userName, password } = loginData;
@@ -166,6 +178,6 @@ export const fakeUserInfoData = () => {
       } else {
         throw new Error('用户名或密码不正确');
       }
-    }
+    },
   });
-}
+};
