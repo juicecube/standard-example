@@ -5,16 +5,20 @@ import { ReduxState } from 'example/redux/root-reducer';
 import {
   fetch_date_list,
   update_select_date,
+  fetch_user_info,
   update_todo_list_data_source,
   delete_todo_list_data_source,
   add_todo_list_data_source,
   update_todo_list,
   TodoDataInfo,
 } from 'example/redux/index';
-import { DateListComp } from './component/date-list';
-import { TodoListComp } from './component/todo-list';
+import { DateListComp } from './components/date-list';
+import { TodoListComp } from './components/todo-list';
 import { upDateObjectValue } from 'example/utils/index';
 import { todayDateStr } from 'example/api/fake-data';
+import { withAuthenticationHoc } from 'example/components/with-authentication-hoc';
+import { AvatarComp } from 'example/pages/index/components/avatar';
+
 import './index.scss';
 
 // 从map_state_to_props和map_dispatch_to_props返回值推断出组件的props
@@ -24,6 +28,7 @@ export class Index extends React.PureComponent<IndexProps> {
 
   componentDidMount() {
    this.props.fetch_date_list();
+   this.props.fetch_user_info();
   }
 
   componentDidUpdate() {
@@ -59,11 +64,12 @@ export class Index extends React.PureComponent<IndexProps> {
 
   render() {
     const { indexState } = this.props;
-    const { dateList, select_date, todoList } = indexState;
+    const { dateList, select_date, todoList, userInfo } = indexState;
     return(
       <div styleName="index_container">
         <header styleName="container_header">
-          <p>TODO LIST</p>
+          <div styleName="container_header_left"><p>TODO LIST</p></div>
+          <div styleName="container_header_right"><AvatarComp userInfo={userInfo}/></div>
         </header>
         <div styleName="container_content">
           <div styleName="content_left">
@@ -95,9 +101,10 @@ const mapDispatchToProps = (dispatch:any) => bindActionCreators({
   delete_todo_list_data_source,
   add_todo_list_data_source,
   update_todo_list,
+  fetch_user_info,
 }, dispatch);
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Index);
+)(withAuthenticationHoc(Index));

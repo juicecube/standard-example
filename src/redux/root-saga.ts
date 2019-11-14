@@ -1,9 +1,11 @@
 import { call, spawn, all } from 'redux-saga/effects';
-import { IndexSaga } from 'example/redux/index/saga';
+import { indexSaga } from 'example/redux/index/saga';
+import { loginSaga } from 'example/redux/login/saga';
 
-export function* RootSaga() {
+export function* rootSaga() {
   const sagas = [
-    IndexSaga,
+    indexSaga,
+    loginSaga,
   ];
 
   yield all(sagas.map((saga) =>

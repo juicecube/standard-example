@@ -1,0 +1,40 @@
+
+.avatar_container {
+  position: relative;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background: url('~example/pages/index/assets/male-user.png') no-repeat;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 0 1rem #9da5ab;
+  }
+}
+.avatar_info_container {
+  position: absolute;
+  z-index: 1;
+  top: 40px;
+  right: 0;
+  // width: 150px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 1rem #9da5ab;
+}
+.info_item {
+  display: flex;
+  height: 20px;
+}
+.item_key {
+  display: inline-block;
+  height: 100%;
+  width: 80px;
+  margin-right: 10px;
+}
+.item_content {
+  display: inline-block;
+  height: 100%;
+  width: 100px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

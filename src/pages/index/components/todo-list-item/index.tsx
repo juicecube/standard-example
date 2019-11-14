@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as cn from 'classnames';
-import { RadioButtonComp } from 'example/component/radio-button';
+import { RadioButtonComp } from 'example/components/radio-button';
 import { TodoDataInfo } from 'example/redux/index/index';
 import './index.scss';
 const { useState } = React;

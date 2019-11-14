@@ -1,8 +1,9 @@
 import { TodoDataInfo } from 'example/redux/index/index';
-import { fakeTodoListData, fakeDateListData } from './fake-data';
+import { fakeTodoListData, fakeDateListData, fakeUserInfoData } from './fake-data';
 
 const dateListDataSource = fakeDateListData();
 const dataSource = fakeTodoListData();
+const userInfoDataSource = fakeUserInfoData();
 const largeDelayTime = 500;
 const smallDelayTime = 100;
 
@@ -46,5 +47,29 @@ export const AddTodoList = async(date:string) => new Promise((resolve, reject) =
   setTimeout(() => {
     const newDataSource = dataSource.adder(date);
     resolve(newDataSource);
+  }, smallDelayTime);
+});
+
+// 用户登录
+export const login = async(loginData:any) => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    try {
+      const res = userInfoDataSource.checker(loginData);
+      resolve(res);
+    } catch (e) {
+      reject(e);
+    }
+  }, largeDelayTime);
+});
+
+// 查询用户信息
+export const fetchUserInfo = async(userId:string) => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    try {
+      const res = userInfoDataSource.getter(userId);
+      resolve(res);
+    } catch (e) {
+      reject(e);
+    }
   }, smallDelayTime);
 });

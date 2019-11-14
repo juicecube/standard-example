@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@mlz/lint": "^1.0.10",
-    "@mlz/pack": "0.0.19",
+    "@mlz/pack": "^0.1.8",
     "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.22",
     "@types/react": "^16.9.11",

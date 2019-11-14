@@ -1,7 +1,7 @@
 import {  createStore, applyMiddleware, Middleware, Store } from 'redux';
 import { rootReducer, ReduxState } from './root-reducer';
 import createSagaMiddleware from 'redux-saga';
-import { RootSaga } from './root-saga';
+import { rootSaga } from './root-saga';
 
 export type StoreType = Store<ReduxState>;
 
@@ -29,4 +29,4 @@ export let createCustomStore =  () : Store<ReduxState> => {
   return stateStore;
 };
 export const store = createCustomStore();
-sagaMiddleware.run(RootSaga);
+sagaMiddleware.run(rootSaga);

@@ -2,6 +2,8 @@ import { put, fork, take, call, select } from 'redux-saga/effects';
 import {
   fetch_date_list,
   update_date_list,
+  fetch_user_info,
+  update_user_info,
   update_select_date,
   update_todo_list,
   selectSelectedDate,
@@ -10,10 +12,13 @@ import {
   add_todo_list_data_source,
   TodoDataInfo,
 } from './index';
-import { fetchDateList, fetchTodoList, upDateTodoList, DleteTodoList, AddTodoList } from 'example/api/fake-api';
+import { fetchDateList, fetchTodoList, upDateTodoList, DleteTodoList, AddTodoList, fetchUserInfo } from 'example/api/fake-api';
 import { handleDateListRes } from './utils';
+import { storeManage, USER_ID } from 'example/utils/storage-manage';
 
-export function* IndexSaga() {
+
+export function* indexSaga() {
+  yield fork(watchFetchUserInfo);
   yield fork(watchFetchDateList);
   yield fork(watchFetchTodoList);
   yield fork(watchUpdateTodoListDataSource);
@@ -29,6 +34,18 @@ export function* watchFetchDateList() {
     yield put(update_date_list(handledRes));
   } catch (error) {
     console.log(error);
+  }
+}
+
+export function* watchFetchUserInfo() {
+  try {
+    yield take(fetch_user_info);
+    const userId = storeManage.get(USER_ID);
+    const res = yield call(fetchUserInfo, userId);
+    console.log('watchFetchUserInfo', res);
+    yield put(update_user_info(res));
+  } catch (error) {
+    window.alert(error.message || 'fetch error');
   }
 }
 

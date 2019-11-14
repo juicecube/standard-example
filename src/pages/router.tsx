@@ -12,9 +12,9 @@ const MyLoadingComponent = ({ isLoading, error }:any) => {
   }
 };
 
-const _loadable = (load_func:any) => {
+const _loadable = (loadFunc:any) => {
   return Loadable({
-    loader: load_func,
+    loader: loadFunc,
     loading: MyLoadingComponent,
     delay: 200,
   });
@@ -25,12 +25,21 @@ const _loadable = (load_func:any) => {
  */
 export let routes:RouteProps[] = [
   {
+    path: '/login',
+    exact: true,
+    component: _loadable(() => import('./login')),
+  },
+  {
     path: '/',
     exact: true,
     component: _loadable(() => import('./index')),
-    
+    // component: _loadable(() => {
+    //   const comp = require('./index');
+    //   console.log('comp', withAuthenticationHoc(comp))
+    //   return withAuthenticationHoc(comp);
+    // }),
   },
   {
-    component: _loadable(() => import('../component/page-not-found')),
+    component: _loadable(() => import('../components/page-not-found')),
   },
 ];

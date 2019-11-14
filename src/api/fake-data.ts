@@ -111,3 +111,61 @@ export const fakeTodoListData = () => {
     },
   });
 };
+
+export interface UserInfoData {
+  userName:string;
+  userId:string;
+  password:string;
+  avatar:string;
+  age:number;
+  gender:'M'|'W'|'';
+}
+
+export const fakeUserInfoData = () => {
+  const data:UserInfoData[] = [
+    {
+      userName: 'Faker',
+      userId: 't1111111',
+      password: 'faker1234',
+      avatar: '',
+      age: 23,
+      gender: 'M',
+    },
+  ];
+
+  return ({
+    getter: (id:string) => {
+      const resData = data.filter((item) => item.userId === id);
+      if (resData.length <= 0) {
+        throw new Error('此用户不存在');
+      }
+      delete resData[0].password;
+      return resData[0];
+    },
+    adder: (newItem:any) => {
+      const userId = new Date().getTime() + '';
+      const newDataItem = {
+        userName: newItem.userName || '',
+        userId,
+        password: newItem.password,
+        avatar: '',
+        age: newItem.age || 0,
+        gender: newItem.gender || 'M',
+      };
+      data.push(newDataItem);
+    },
+    checker: (loginData:any) => {
+      const { userName, password } = loginData;
+      const userInfo = data.filter((item) => item.userName === userName);
+      if (userInfo.length <= 0) {
+        throw new Error('此用户不存在');
+      }
+      if (userInfo[0].password === password) {
+        const authentication = new Date().getTime() + 'token';
+        return { authentication, userId: userInfo[0].userId };
+      } else {
+        throw new Error('用户名或密码不正确');
+      }
+    }
+  });
+}
