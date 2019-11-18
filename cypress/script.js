@@ -2,15 +2,19 @@
 const program = require('commander');
 const fs = require('fs');
 const childProcess = require('child_process');
+const process = require('process');
 const colors = require('colors');
 
 const CYPRESS_BASE_TEST_PATH = 'cypress/integration/';
 let noCommand = true;
 
+console.log('args: ', process.argv);
+
+
 const getCypressInlineCommand = (openScreenShot, openVideo) => {
   if (!openScreenShot && !openVideo) { return '' }
   let inlineCommand = '--config ';
-  if (openScreenShot) { inlineCommand = inlineCommand + 'screenshotsFolder="cypress/screenshots",' }
+  if (openScreenShot) { inlineCommand = inlineCommand + 'supportFile="cypress/support/index-with-sn.js",' }
   if (openVideo) { inlineCommand = inlineCommand + 'video=true,' }
   return inlineCommand.slice(0, -1);
 }
@@ -43,12 +47,12 @@ program
     // console.log('cmdObj', cmdObj);
     // 测试配置
     console.log('=== test config ===');
-    const openScreenShot = cmdObj.screenShot;
-    const openVide = cmdObj.record;
+    const withScreenShot = cmdObj.screenShot;
+    const withVideo = cmdObj.record;
     console.log('record', cmdObj.record);
-    const testConfigCommand = getCypressInlineCommand(openScreenShot, openVide);
-    console.log('openScreenShot：'.green, openScreenShot || false);
-    console.log('openVide：'.green, openVide || false);
+    const testConfigCommand = getCypressInlineCommand(withScreenShot, withVideo);
+    console.log('withScreenShot: '.green, withScreenShot);
+    console.log('withVideo: '.green, withVideo);
     console.log('====================================================================================================');
     if (moduleNames.length > 0) {
       console.log('it will check if the module exists');

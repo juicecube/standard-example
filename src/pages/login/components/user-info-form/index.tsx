@@ -45,7 +45,7 @@ const UserInfoForm:React.FunctionComponent<UserInfoFormProps> = (props) => {
       name: '年龄：',
       renderComponent: () => <input value={formData.age} onChange={(e) => onFormChange(e, 'age', (value:any) => {
         if (!value) { return '年龄不能为空'; }
-        if (typeof value !== 'number') { return '必须为数字'; }
+        if (typeof Number(value) !== 'number') { return '必须为数字'; }
         if (value <= 0 || value > MAX_AGE) { return `必须为1~${MAX_AGE}之间`; }
         return '';
       })}/>,

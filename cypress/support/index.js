@@ -29,4 +29,7 @@ import './commands'
 //   console.log('an error happended：');
 //   throw error // throw error to have test still fail
 // })
+Cypress.Screenshot.defaults({
+  screenshotOnRunFailure: false
+})
 
