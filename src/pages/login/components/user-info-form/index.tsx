@@ -4,6 +4,9 @@ import { AddUserInfoData } from 'example/api/fake-data';
 import './index.scss';
 
 const { useState } = React;
+const MAX_LENGTH_USERNAME = 6;
+const MAX_LENGTH_PASSWORD = 6;
+const MAX_AGE = 100;
 
 interface UserInfoFormProps {
   onSubmit:(submitData:AddUserInfoData) => void;
@@ -32,25 +35,38 @@ const UserInfoForm:React.FunctionComponent<UserInfoFormProps> = (props) => {
       key: 'userName',
       name: '用户名：',
       renderComponent: () => <input value={formData.userName} onChange={(e) => onFormChange(e, 'userName', (value:any) => {
-        if (value.length < 1) { return '用户名不能为空'; }
-        if (value.length > 6) { return '用户名不超过6位'; }
+        if (!value) { return '用户名不能为空'; }
+        if (value.length > MAX_LENGTH_USERNAME) { return '用户名不超过6位'; }
         return '';
       })}/>,
     },
     {
       key: 'age',
       name: '年龄：',
-      renderComponent: () => <input value={formData.age} onChange={(e) => onFormChange(e, 'age')}/>,
+      renderComponent: () => <input value={formData.age} onChange={(e) => onFormChange(e, 'age', (value:any) => {
+        if (!value) { return '年龄不能为空'; }
+        if (typeof value !== 'number') { return '必须为数字'; }
+        if (value <= 0 || value > MAX_AGE) { return `必须为1~${MAX_AGE}之间`; }
+        return '';
+      })}/>,
     },
     {
       key: 'gender',
       name: '性别：',
-      renderComponent: () => <input value={formData.gender} onChange={(e) => onFormChange(e, 'gender')}/>,
+      renderComponent: () => <input value={formData.gender} onChange={(e) => onFormChange(e, 'gender', (value:any) => {
+        if (!value) { return '性别不能为空'; }
+        if (value !== '男' && value !== '女'  ) { return '性别只能为男或女'; }
+        return '';
+      })}/>,
     },
     {
       key: 'password',
       name: '密码：',
-      renderComponent: () => <input value={formData.password} onChange={(e) => onFormChange(e, 'password')}/>,
+      renderComponent: () => <input value={formData.password} onChange={(e) => onFormChange(e, 'password', (value:any) => {
+        if (!value) { return '年龄不能为空'; }
+        if (value.length > MAX_LENGTH_PASSWORD) { return '密码在6位以下'; }
+        return '';
+      })}/>,
     },
   ];
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const program = require('commander');
-const childProcess = require('child_process');
 const fs = require('fs');
+const childProcess = require('child_process');
 const colors = require('colors');
 
 const CYPRESS_BASE_TEST_PATH = 'cypress/integration/';
@@ -17,6 +17,7 @@ const getCypressInlineCommand = (openScreenShot, openVideo) => {
 
 program
   .version('0.0.1')
+  // .arguments('<cmd> []')
   .usage('<commad> [option]');
 
 program
@@ -35,14 +36,16 @@ program
   .command('run [moduleNames...]')
   .description('run test files')
   .option('-s, --screenShot', 'automatically takes a screenshot when there is a failure in Run mode')
-  .option('-v --video', 'automatically record a video when there is a failure in Run mode')
-  .action((moduleNames, options) => {
+  .option('-r, --record', 'automatically record a video when there is a failure in Run mode')
+  .action(function (moduleNames, cmdObj) {
     noCommand = false;
     console.log('moduleNames', moduleNames);
+    // console.log('cmdObj', cmdObj);
     // 测试配置
     console.log('=== test config ===');
-    const openScreenShot = options.screenShot;
-    const openVide = options.video;
+    const openScreenShot = cmdObj.screenShot;
+    const openVide = cmdObj.record;
+    console.log('record', cmdObj.record);
     const testConfigCommand = getCypressInlineCommand(openScreenShot, openVide);
     console.log('openScreenShot：'.green, openScreenShot || false);
     console.log('openVide：'.green, openVide || false);

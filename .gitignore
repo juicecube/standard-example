@@ -6,7 +6,7 @@ build
 .vscode
 
 #mac
-*.DS_Store
+.DS_Store
 
 #cypress
 cypress/screenshots
