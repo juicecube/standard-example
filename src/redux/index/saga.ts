@@ -16,7 +16,6 @@ import { fetchDateList, fetchTodoList, upDateTodoList, DleteTodoList, AddTodoLis
 import { handleDateListRes } from './utils';
 import { storeManage, USER_ID } from 'example/utils/storage-manage';
 
-
 export function* indexSaga() {
   yield fork(watchFetchUserInfo);
   yield fork(watchFetchDateList);

@@ -11,9 +11,7 @@ const { useState } = React;
 const LOGIN = 'login';
 const REGISTER = 'register';
 
-type LoginProps = {};
-
-const Login:React.FunctionComponent<LoginProps> = (props) => {
+const Login:React.FunctionComponent = (props) => {
 
   const [userName, setUserName] = useState('');
   const [password, setPassWord] = useState('');
@@ -64,7 +62,7 @@ const Login:React.FunctionComponent<LoginProps> = (props) => {
         setSelectedTab(LOGIN);
       },
     }));
-  }
+  };
 
   return (
     <div styleName="login_wrap">

@@ -33,11 +33,6 @@ export let routes:RouteProps[] = [
     path: '/',
     exact: true,
     component: _loadable(() => import('./index')),
-    // component: _loadable(() => {
-    //   const comp = require('./index');
-    //   console.log('comp', withAuthenticationHoc(comp))
-    //   return withAuthenticationHoc(comp);
-    // }),
   },
   {
     component: _loadable(() => import('../components/page-not-found')),
