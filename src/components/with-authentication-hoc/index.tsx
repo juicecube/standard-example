@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { useLocalStorage } from 'example/hooks/use-localstorage';
+import { storeManage, SESSION, USER_TOKEN } from 'example/utils/storage-manage';
 
 import './index.scss';
 
 export const withAuthenticationHoc = <P extends object>(WrappedComponent:React.ComponentType<P>) : React.FunctionComponent<P> => {
   const withAuthentication = (props:P) => {
-    const [authentication] = useLocalStorage('authentication');
+    const authentication = storeManage.get(USER_TOKEN, SESSION);
     if (!authentication) {
       window.browserHistory.push('/login');
       return null;
@@ -20,4 +20,4 @@ export const withAuthenticationHoc = <P extends object>(WrappedComponent:React.C
   // withAuthentication.displayName = `withFoo(${wrappedComponentName})`;
 
   return withAuthentication;
-}
+};

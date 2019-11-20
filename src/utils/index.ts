@@ -1,12 +1,14 @@
 /**
  * 公用方法
  */
-interface UpDateObjectValueProps {
+interface UpDateObjectArrayValueProps {
   sourceObjectArray:DefaultObejct[];
   key:string;
   newItem:DefaultObejct;
 }
-export const upDateObjectValue = (props:UpDateObjectValueProps) => {
+
+// 更新object数组item（有则替换，无则新增）
+export const upDateObjectArrayValue = (props:UpDateObjectArrayValueProps) => {
   const { sourceObjectArray, key, newItem } = props;
   const newObjectArray:DefaultObejct[] = [];
   let isNew = true;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import * as cn from 'classnames';
 import { fetch_login, fetch_register } from 'example/redux/login/index';
-import { storeManage, USER_TOKEN, USER_ID } from 'example/utils/storage-manage';
+import { storeManage, USER_TOKEN, USER_ID, SESSION } from 'example/utils/storage-manage';
 import { UserInfoFormComp } from 'example/pages/login/components/user-info-form';
 import { AddUserInfoData } from 'example/api/fake-data';
 import './index.scss';
@@ -39,8 +39,8 @@ const Login:React.FunctionComponent = (props) => {
         const { authentication, userId } = res;
         console.log('rescallback');
         window.alert('登陆成功！！');
-        storeManage.set(USER_TOKEN, authentication);
-        storeManage.set(USER_ID, userId);
+        storeManage.set(USER_TOKEN, authentication, SESSION);
+        storeManage.set(USER_ID, userId, SESSION);
         window.browserHistory.push('/');
       },
     }));
@@ -60,6 +60,8 @@ const Login:React.FunctionComponent = (props) => {
       cb: (res:any) => {
         window.alert('注册成功！！');
         setSelectedTab(LOGIN);
+        setUserName('');
+        setPassWord('');
       },
     }));
   };

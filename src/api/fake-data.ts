@@ -1,6 +1,7 @@
 import { superDate } from '@mlz/super-utils';
 import { TodoDataInfo } from 'example/redux/index/index';
-import { upDateObjectValue } from 'example/utils/index';
+import { upDateObjectArrayValue } from 'example/utils/index';
+import { storeManage, TODO_LIST_DATA, DATE_LIST_DATA, USER_INFO_DATA, LOCAL, SESSION } from 'example/utils/storage-manage';
 
 export const todayDateStr = superDate.format(new Date().getTime(), 'yyyy-mm-dd');
 
@@ -20,93 +21,51 @@ interface FakeDateListDataType {
   date:string;
 }
 export const fakeDateListData = () => {
-  const data:FakeDateListDataType[] = [
-    {
-      id: '123pp',
-      date: '2019-10-31',
-    },
-    {
-      id: '123uu',
-      date: '2019-11-01',
-    },
-    {
+  const data:FakeDateListDataType[] = storeManage.get(DATE_LIST_DATA, LOCAL) || [];
+
+  if (data.filter((item) => item.date === todayDateStr).length < 1) {
+    data.push({
       id: new Date().getTime() + '',
       date: todayDateStr,
-    },
-  ];
+    });
+    storeManage.set(DATE_LIST_DATA, data, LOCAL);
+  }
+
   return({
     getter: () => {
       return data;
     },
     adder: (newDataItem:FakeDateListDataType) => {
       data.push(newDataItem);
+      storeManage.set(DATE_LIST_DATA, data, LOCAL);
     },
   });
 };
 
 export const fakeTodoListData = () => {
-  let data:TodoDataInfo[] = [
-    {
-      id: 'ssssss',
-      date: '2019-10-31',
-      isFinished: true,
-      overview: '挣他一个亿',
-    },
-    {
-      id: 'dddddd',
-      date: '2019-10-31',
-      isFinished: false,
-      overview: '买个布加迪威龙',
-      details: '下午4：00飞美利坚洛杉矶，买辆布加迪威龙空运回来',
-    },
-    {
-      id: 'ffffffff',
-      date: '2019-11-01',
-      isFinished: false,
-      overview: '度个假',
-      details: '中国，新加坡，印度尼西亚',
-    },
-    {
-      id: 'ggggggg',
-      date: '2019-11-01',
-      isFinished: true,
-      overview: '吃饭',
-      details: '火锅？ 烤肉？ 海底捞？',
-    },
-    {
-      id: 'hhhhhhh',
-      date: '2019-11-01',
-      isFinished: false,
-      overview: '看电影',
-      details: '喜剧？恐怖片？动作？悬疑？',
-    },
-    {
-      id: 'jjjjjj',
-      date: todayDateStr,
-      isFinished: false,
-      overview: '新的一天',
-      details: '做什么你说了算',
-    },
-  ];
+  let data:TodoDataInfo[] = storeManage.get(TODO_LIST_DATA, LOCAL) || [];
   return({
     getter: (date:string) => {
       return data.filter((item) => item.date === date);
     },
     setter: (newData:TodoDataInfo) => {
-      const handledData = upDateObjectValue({
+      const handledData = upDateObjectArrayValue({
         sourceObjectArray: data,
         key: 'id',
         newItem: newData,
       });
       data = handledData as TodoDataInfo[];
+      storeManage.set(TODO_LIST_DATA, data, LOCAL);
     },
     remover: (id:string) => {
       const handledData = data.filter((item) => item.id !== id);
       data = handledData;
+      storeManage.set(TODO_LIST_DATA, data, LOCAL);
     },
     adder: (date:string) => {
       const newTodoListItem = getNewDefaultTodoListItemData(date);
       data.push(newTodoListItem);
+      storeManage.set(TODO_LIST_DATA, data, LOCAL);
       return data.filter((item) => item.date === date);
     },
   });
@@ -129,16 +88,7 @@ export interface AddUserInfoData {
 }
 
 export const fakeUserInfoData = () => {
-  const data:UserInfoData[] = [
-    {
-      userName: 'Faker',
-      userId: 't1111111',
-      password: 'faker1234',
-      avatar: '',
-      age: 23,
-      gender: '男',
-    },
-  ];
+  const data:UserInfoData[] = storeManage.get(USER_INFO_DATA, SESSION) || [];
 
   return ({
     getter: (id:string) => {
@@ -164,6 +114,7 @@ export const fakeUserInfoData = () => {
         gender: newItem.gender,
       };
       data.push(newDataItem);
+      storeManage.set(USER_INFO_DATA, data, SESSION);
       return true;
     },
     checker: (loginData:any) => {

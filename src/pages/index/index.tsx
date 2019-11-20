@@ -14,7 +14,7 @@ import {
 } from 'example/redux/index';
 import { DateListComp } from './components/date-list';
 import { TodoListComp } from './components/todo-list';
-import { upDateObjectValue } from 'example/utils/index';
+import { upDateObjectArrayValue } from 'example/utils/index';
 import { todayDateStr } from 'example/api/fake-data';
 import { withAuthenticationHoc } from 'example/components/with-authentication-hoc';
 import { AvatarComp } from 'example/pages/index/components/avatar';
@@ -43,7 +43,7 @@ export class Index extends React.PureComponent<IndexProps> {
   }
 
   onTodoListChange = (changedData:TodoDataInfo) => {
-    const newData = upDateObjectValue({
+    const newData = upDateObjectArrayValue({
       sourceObjectArray: this.props.indexState.todoList,
       key: 'id',
       newItem: changedData,

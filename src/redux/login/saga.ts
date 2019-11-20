@@ -23,7 +23,6 @@ export function* watchFetchLogin() {
 export function* watchFetchRegister() {
   try {
     while (true) {
-      console.log('watchFetchRegister');
       const action = yield take(fetch_register);
       const { userName, age, gender, password, cb } = action.payload;
       const res = yield call(register, { userName, age, gender, password });
