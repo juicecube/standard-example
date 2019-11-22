@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "mlz-pack serve",
-    "test:unit": "jest",
+    "test:unit": "yuumi test:unit",
     "test:e2e-open": "yuumi test:e2e-open",
     "test:e2e-run": "yuumi test:e2e-run",
     "test:e2e-run-s": "yuumi test:e2e-run -s",
@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@mlz/cli-plugin-e2e-test": "^1.0.7",
+    "@mlz/cli-plugin-unit-jest": "^1.1.5",
     "@mlz/lint": "^1.0.10",
     "@mlz/pack": "^0.1.8",
     "@types/classnames": "^2.2.9",

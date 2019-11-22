@@ -14,7 +14,8 @@
     "./js_transition.d.ts"
   ],
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "__test__/**/*"
   ],
   "exclude": [
     "node_modules",
