@@ -33,6 +33,12 @@
   height: 30px;
   margin-right: 10px;
 }
+.overview_input_save_button {
+  @extend .button;
+  background-color: #1890ff;
+  border-color: #1890ff;
+  color: white;
+}
 .overview_div {
   height: 100%;
   width: 100%

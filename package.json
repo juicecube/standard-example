@@ -11,6 +11,11 @@
     "test:e2e": "cypress/script.js",
     "test:unit": "jest"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run test:unit"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/juicecube/standard-example.git"

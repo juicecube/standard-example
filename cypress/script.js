@@ -8,9 +8,6 @@ const colors = require('colors');
 const CYPRESS_BASE_TEST_PATH = 'cypress/integration/';
 let noCommand = true;
 
-console.log('args: ', process.argv);
-
-
 const getCypressInlineCommand = (openScreenShot, openVideo) => {
   if (!openScreenShot && !openVideo) { return '' }
   let inlineCommand = '--config ';

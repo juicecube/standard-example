@@ -14,6 +14,7 @@ module.exports = {
   transformIgnorePatterns: [
     '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$',
     '^.+\\.module\\.(css|sass|scss|less)$',
+    '/cypress/',
   ],
   moduleNameMapper: {
     '^example/(.*)$': '<rootDir>/src/$1'

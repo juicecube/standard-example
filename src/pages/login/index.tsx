@@ -32,12 +32,12 @@ const Login:React.FunctionComponent = (props) => {
       window.alert('请填写用户名/密码！');
       return;
     }
+    console.log('click login');
     dispatch(fetch_login({
       userName,
       password,
       cb: (res:any) => {
         const { authentication, userId } = res;
-        console.log('rescallback');
         window.alert('登陆成功！！');
         storeManage.set(USER_TOKEN, authentication, SESSION);
         storeManage.set(USER_ID, userId, SESSION);
@@ -51,7 +51,6 @@ const Login:React.FunctionComponent = (props) => {
   };
 
   const onRegisterSubmit = (submitData:AddUserInfoData) => {
-    console.log('onRegisterSubmit', submitData);
     dispatch(fetch_register({
       userName: submitData.userName,
       age: submitData.age,
@@ -88,14 +87,14 @@ const Login:React.FunctionComponent = (props) => {
                   </header>
                   <div styleName="option_container">
                     <div styleName="btn_box">
-                      <input type="text" name="username" value={userName} onChange={(e) => onUsernameChange(e)} placeholder="用户名" />
+                      <input type="text" id="username" value={userName} onChange={(e) => onUsernameChange(e)} placeholder="用户名" />
                       <i styleName="login_user" aria-hidden="true"></i>
                     </div>
                     <div styleName="btn_box_radius">
-                      <input type="password" name="password" value={password} onChange={(e) => onPassWordChange(e)} placeholder="密码" maxLength={12}/>
+                      <input type="password" id="password" value={password} onChange={(e) => onPassWordChange(e)} placeholder="密码" maxLength={12}/>
                       <i styleName="login_lock" aria-hidden="true"></i>
                     </div>
-                    <button styleName="login" onClick={onLoginClick}>登录</button>
+                    <button styleName="login_button" onClick={onLoginClick}>登录</button>
                   </div>
                 </div>
               : <div styleName="register_container">

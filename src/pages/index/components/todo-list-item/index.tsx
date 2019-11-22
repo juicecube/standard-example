@@ -81,7 +81,7 @@ const TodoListItem:React.FunctionComponent<TodoListItemProps> = (props) => {
             overviewInputing
               ? <div>
                   <input type="text" styleName="overview_input" defaultValue={displayOverview} onChange={(e) => onOverviewChange(e)} onClick={(e) => e.stopPropagation()}/>
-                  <button onClick={(e) => onOverviewSave(e)}>保存</button>
+                  <button styleName="overview_input_save_button" onClick={(e) => onOverviewSave(e)}>保存</button>
                 </div>
               : <div styleName="overview_div middle">
                   <span styleName="overview_editable_area" onClick={(e) => onOverviewClick(e)}>{ displayOverview }</span>

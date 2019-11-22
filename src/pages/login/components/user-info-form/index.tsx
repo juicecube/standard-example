@@ -34,8 +34,8 @@ const UserInfoForm:React.FunctionComponent<UserInfoFormProps> = (props) => {
     {
       key: 'userName',
       name: '用户名：',
-      renderComponent: () => <input value={formData.userName} onChange={(e) => onFormChange(e, 'userName', (value:any) => {
-        if (!value) { return '用户名不能为空'; }
+      renderComponent: () => <input id="userNameInput" value={formData.userName} onChange={(e) => onFormChange(e, 'userName', (value:any) => {
+        if (!value || !value.trim()) { return '用户名不能为空'; }
         if (value.length > MAX_LENGTH_USERNAME) { return '用户名不超过6位'; }
         return '';
       })}/>,
@@ -43,9 +43,9 @@ const UserInfoForm:React.FunctionComponent<UserInfoFormProps> = (props) => {
     {
       key: 'age',
       name: '年龄：',
-      renderComponent: () => <input value={formData.age} onChange={(e) => onFormChange(e, 'age', (value:any) => {
-        if (!value) { return '年龄不能为空'; }
-        if (typeof Number(value) !== 'number') { return '必须为数字'; }
+      renderComponent: () => <input id="ageInput" value={formData.age} onChange={(e) => onFormChange(e, 'age', (value:any) => {
+        if (!value || !value.trim()) { return '年龄不能为空'; }
+        if (isNaN(Number(value))) { return '必须为数字'; }
         if (value <= 0 || value > MAX_AGE) { return `必须为1~${MAX_AGE}之间`; }
         return '';
       })}/>,
@@ -53,8 +53,8 @@ const UserInfoForm:React.FunctionComponent<UserInfoFormProps> = (props) => {
     {
       key: 'gender',
       name: '性别：',
-      renderComponent: () => <input value={formData.gender} onChange={(e) => onFormChange(e, 'gender', (value:any) => {
-        if (!value) { return '性别不能为空'; }
+      renderComponent: () => <input id="genderInput" value={formData.gender} onChange={(e) => onFormChange(e, 'gender', (value:any) => {
+        if (!value || !value.trim()) { return '性别不能为空'; }
         if (value !== '男' && value !== '女'  ) { return '性别只能为男或女'; }
         return '';
       })}/>,
@@ -62,8 +62,8 @@ const UserInfoForm:React.FunctionComponent<UserInfoFormProps> = (props) => {
     {
       key: 'password',
       name: '密码：',
-      renderComponent: () => <input value={formData.password} onChange={(e) => onFormChange(e, 'password', (value:any) => {
-        if (!value) { return '年龄不能为空'; }
+      renderComponent: () => <input id="passwordInput" value={formData.password} onChange={(e) => onFormChange(e, 'password', (value:any) => {
+        if (!value || !value.trim()) { return '密码不能为空'; }
         if (value.length > MAX_LENGTH_PASSWORD) { return '密码在6位以下'; }
         return '';
       })}/>,

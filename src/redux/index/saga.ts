@@ -95,6 +95,7 @@ function* watchAddTodoListDataSource () {
       const action = yield take(add_todo_list_data_source);
       const date = action.payload;
       const newTodoListDataSource = yield call(AddTodoList, date);
+      console.log('newTodoListDataSource', newTodoListDataSource);
       yield put(update_todo_list(newTodoListDataSource));
     }
   } catch (error) {
