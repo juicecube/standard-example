@@ -135,6 +135,7 @@ describe('register module', () => {
         .contains('提交')
         .click()
         .then(() => {
+          cy.wait(1000);
           console.log('alertCallBack', alertCallBack);
           expect(alertCallBack.getCall(0)).to.be.calledWith('注册成功！！');
         });
