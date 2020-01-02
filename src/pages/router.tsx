@@ -2,9 +2,9 @@ import * as React from 'react';
 import { RouteProps } from 'react-router-dom';
 import * as Loadable from 'react-loadable';
 
-const MyLoadingComponent = ({ isLoading, error }:any) => {
-  if (isLoading) {
-    return <div>Loading...</div>;
+const MyLoadingComponent = ({ pastDelay, error }:any) => {
+  if (pastDelay) {
+    return <div style={{ backgroundColor: 'red' }}>Loading...</div>;
   } else if (error) {
     return <div>Sorry, there was a problem loading the page.</div>;
   } else {
@@ -16,7 +16,7 @@ const _loadable = (loadFunc:any) => {
   return Loadable({
     loader: loadFunc,
     loading: MyLoadingComponent,
-    delay: 200,
+    delay: 500,
   });
 };
 
