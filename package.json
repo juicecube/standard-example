@@ -48,7 +48,7 @@
   "devDependencies": {
     "@mlz/cli-plugin-e2e-test": "^1.0.7",
     "@mlz/cli-plugin-unit-jest": "^1.1.5",
-    "@mlz/lint": "^1.0.10",
+    "@mlz/lint": "^1.1.1",
     "@mlz/pack": "^0.1.8",
     "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.22",
@@ -61,10 +61,11 @@
     "@types/react-router-dom": "^5.1.1",
     "@types/redux": "^3.6.0",
     "cypress": "^3.6.0",
+    "eslint": "^6.8.0",
     "jest": "^24.9.0",
     "redux-saga-test-plan": "^4.0.0-rc.2",
+    "stylelint": "^13.0.0",
     "ts-jest": "^24.1.0",
-    "tslint": "^5.20.0",
     "typescript": "^3.6.4"
   }
 }
