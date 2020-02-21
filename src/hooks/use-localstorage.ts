@@ -1,7 +1,7 @@
 import * as React from 'react';
 const { useState, useEffect } = React;
 
-export const useLocalStorage = <T>(key:string, initialValue?:T, raw?:boolean) : [T, (value:T) => void] => {
+export const useLocalStorage = <T>(key:string, initialValue?:T, raw?:boolean):[T, (value:T) => void] => {
 
   const [state, setState] = useState<T>(() => {
     try {

@@ -29,7 +29,7 @@ export interface UserInfo {
 export interface IndexState {
   dateList:DateListType[];
   todoList:TodoDataInfo[];
-  select_date:string;
+  selectDate:string;
   userInfo:UserInfo;
 }
 
@@ -37,7 +37,7 @@ export interface IndexState {
 export const defaultState:IndexState = {
   dateList: [],
   todoList: [],
-  select_date: '',
+  selectDate: '',
   userInfo: {
     userName: '',
     userId: '',
@@ -51,60 +51,52 @@ export const defaultState:IndexState = {
 export const indexModel = createModel({
   state: defaultState,
   reducers: {
-    'index/fetch_date_list': {
-      name: Raw('fetch_date_list'),
+    'index/fetchDateListAction': {
+      name: Raw('fetchDateListAction'),
     },
-    'index/update_date_list': {
-      name: Raw('update_date_list'),
-      reducer: (state:IndexState, action:Action<DateListType[]>) : IndexState => {
-        return { ...state, dateList: (action.payload as []) };
-      },
+    'index/updateDateList': {
+      name: Raw('updateDateList'),
+      reducer: (state:IndexState, action:Action<DateListType[]>):IndexState => ({ ...state, dateList: (action.payload as []) }),
     },
-    'index/fetch_user_info': {
-      name: Raw('fetch_user_info'),
+    'index/fetchUserInfoAction': {
+      name: Raw('fetchUserInfoAction'),
     },
-    'index/update_user_info': {
-      name: Raw('update_user_info'),
-      reducer: (state:IndexState, action:Action<UserInfo>) : IndexState =>  {
-        return { ...state, userInfo: (action.payload as UserInfo) };
-      },
+    'index/updateUserInfo': {
+      name: Raw('updateUserInfo'),
+      reducer: (state:IndexState, action:Action<UserInfo>):IndexState => ({ ...state, userInfo: (action.payload as UserInfo) }),
     },
-    'index/add_todo_list_data_source': {
-      name: Raw('add_todo_list_data_source'),
+    'index/addTodoListDataSource': {
+      name: Raw('addTodoListDataSource'),
     },
-    'index/delete_todo_list_data_source': {
-      name: Raw('delete_todo_list_data_source'),
+    'index/deleteTodoListDataSource': {
+      name: Raw('deleteTodoListDataSource'),
     },
-    'index/update_todo_list_data_source': {
-      name: Raw('update_todo_list_data_source'),
+    'index/updateTodoListDataSource': {
+      name: Raw('updateTodoListDataSource'),
     },
-    'index/update_todo_list': {
-      name: Raw('update_todo_list'),
-      reducer: (state:IndexState, action:Action<TodoDataInfo[]>) : IndexState => {
-        return { ...state, todoList: (action.payload as []) };
-      },
+    'index/updateTodoList': {
+      name: Raw('updateTodoList'),
+      reducer: (state:IndexState, action:Action<TodoDataInfo[]>):IndexState => ({ ...state, todoList: (action.payload as []) }),
     },
-    'index/update_select_date': {
-      name: Raw('update_select_date'),
-      reducer: (state:IndexState, action:Action<string>) : IndexState => {
-        return { ...state, select_date: action.payload || '' };
-      },
+    'index/updateSelectDate': {
+      name: Raw('updateSelectDate'),
+      reducer: (state:IndexState, action:Action<string>):IndexState => ({ ...state, selectDate: action.payload || '' }),
     },
   },
 });
 
 // 简单的selector定义在相关的model中
-export const selectSelectedDate = (state:ReduxState) => state.indexState.select_date;
+export const selectSelectedDate = (state:ReduxState) => state.indexState.selectDate;
 export const selectTodoList = (state:ReduxState) => state.indexState.todoList;
 
 export const {
-  fetch_date_list,
-  update_date_list,
-  fetch_user_info,
-  update_user_info,
-  update_todo_list,
-  update_select_date,
-  update_todo_list_data_source,
-  delete_todo_list_data_source,
-  add_todo_list_data_source,
+  fetchDateListAction,
+  updateDateList,
+  fetchUserInfoAction,
+  updateUserInfo,
+  updateTodoList,
+  updateSelectDate,
+  updateTodoListDataSource,
+  deleteTodoListDataSource,
+  addTodoListDataSource,
 } = indexModel.actions;

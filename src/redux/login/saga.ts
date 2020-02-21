@@ -1,6 +1,6 @@
 import { fork, take, call } from 'redux-saga/effects';
-import { fetch_login, fetch_register } from './index';
 import { login, register } from 'example/api/fake-api';
+import { fetchLogin, fetchRegister } from './index';
 
 export function* loginSaga() {
   yield fork(watchFetchLogin);
@@ -10,7 +10,7 @@ export function* loginSaga() {
 export function* watchFetchLogin() {
   try {
     while (true) {
-      const action = yield take(fetch_login);
+      const action = yield take(fetchLogin);
       const { userName, password, cb } = action.payload;
       const res = yield call(login, { userName, password });
       res && cb && cb(res);
@@ -23,7 +23,7 @@ export function* watchFetchLogin() {
 export function* watchFetchRegister() {
   try {
     while (true) {
-      const action = yield take(fetch_register);
+      const action = yield take(fetchRegister);
       const { userName, age, gender, password, cb } = action.payload;
       const res = yield call(register, { userName, age, gender, password });
       res && cb && cb(res);

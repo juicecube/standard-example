@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { IndexState, indexModel } from './index';
 import { LoginSate, LoginModel } from './login';
+import { IndexState, indexModel } from './index';
 
 export type ReduxState = Readonly<{
     indexState:IndexState;
@@ -8,6 +8,6 @@ export type ReduxState = Readonly<{
 }>;
 
 export const rootReducer = combineReducers<ReduxState>({
-    indexState: indexModel.reducer,
-    LoginSate: LoginModel.reducer,
+  indexState: indexModel.reducer,
+  LoginSate: LoginModel.reducer,
 });

@@ -1,20 +1,20 @@
 import { put, fork, take, call, select } from 'redux-saga/effects';
+import { fetchDateList, fetchTodoList, upDateTodoList, DleteTodoList, AddTodoList, fetchUserInfo } from 'example/api/fake-api';
+import { storeManage, USER_ID, SESSION } from 'example/utils/storage-manage';
+import { handleDateListRes } from './utils';
 import {
-  fetch_date_list,
-  update_date_list,
-  fetch_user_info,
-  update_user_info,
-  update_select_date,
-  update_todo_list,
+  fetchDateListAction,
+  updateDateList,
+  fetchUserInfoAction,
+  updateUserInfo,
+  updateSelectDate,
+  updateTodoList,
   selectSelectedDate,
-  update_todo_list_data_source,
-  delete_todo_list_data_source,
-  add_todo_list_data_source,
+  updateTodoListDataSource,
+  deleteTodoListDataSource,
+  addTodoListDataSource,
   TodoDataInfo,
 } from './index';
-import { fetchDateList, fetchTodoList, upDateTodoList, DleteTodoList, AddTodoList, fetchUserInfo } from 'example/api/fake-api';
-import { handleDateListRes } from './utils';
-import { storeManage, USER_ID, SESSION } from 'example/utils/storage-manage';
 
 export function* indexSaga() {
   yield fork(watchFetchUserInfo);
@@ -28,10 +28,10 @@ export function* indexSaga() {
 export function* watchFetchDateList() {
   try {
     while (true) {
-      yield take(fetch_date_list);
+      yield take(fetchDateListAction);
       const res = yield call(fetchDateList);
       const handledRes = handleDateListRes(res);
-      yield put(update_date_list(handledRes));
+      yield put(updateDateList(handledRes));
     }
   } catch (error) {
     console.log(error);
@@ -41,11 +41,11 @@ export function* watchFetchDateList() {
 export function* watchFetchUserInfo() {
   try {
     while (true) {
-      yield take(fetch_user_info);
+      yield take(fetchUserInfoAction);
       const userId = storeManage.get(USER_ID, SESSION);
       const res = yield call(fetchUserInfo, userId);
       console.log('watchFetchUserInfo', res);
-      yield put(update_user_info(res));
+      yield put(updateUserInfo(res));
     }
   } catch (error) {
     window.alert(error.message || 'fetch error');
@@ -55,20 +55,20 @@ export function* watchFetchUserInfo() {
 export function* watchFetchTodoList() {
   try {
     while (true) {
-      yield take(update_select_date);
+      yield take(updateSelectDate);
       const selectedDate = yield select(selectSelectedDate);
       const res = yield call(fetchTodoList, selectedDate);
-      yield put(update_todo_list(res));
+      yield put(updateTodoList(res));
     }
   } catch (error) {
     console.log(error);
   }
 }
 
-function* watchUpdateTodoListDataSource () {
+function* watchUpdateTodoListDataSource() {
   try {
     while (true) {
-      const action =  yield take(update_todo_list_data_source);
+      const action = yield take(updateTodoListDataSource);
       const newData = action.payload;
       yield call(upDateTodoList, newData as TodoDataInfo);
     }
@@ -77,10 +77,10 @@ function* watchUpdateTodoListDataSource () {
   }
 }
 
-function* watchDeleteTodoListDataSource () {
+function* watchDeleteTodoListDataSource() {
   try {
     while (true) {
-      const action =  yield take(delete_todo_list_data_source);
+      const action = yield take(deleteTodoListDataSource);
       const newData = action.payload;
       yield call(DleteTodoList, newData as string);
     }
@@ -89,14 +89,14 @@ function* watchDeleteTodoListDataSource () {
   }
 }
 
-function* watchAddTodoListDataSource () {
+function* watchAddTodoListDataSource() {
   try {
     while (true) {
-      const action = yield take(add_todo_list_data_source);
+      const action = yield take(addTodoListDataSource);
       const date = action.payload;
       const newTodoListDataSource = yield call(AddTodoList, date);
       console.log('newTodoListDataSource', newTodoListDataSource);
-      yield put(update_todo_list(newTodoListDataSource));
+      yield put(updateTodoList(newTodoListDataSource));
     }
   } catch (error) {
     console.log(error);

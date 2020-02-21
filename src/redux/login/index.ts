@@ -11,16 +11,16 @@ const defaultState:LoginSate = {
 export const LoginModel = createModel({
   state: defaultState,
   reducers: {
-    'login/fetch_login': {
-      name: Raw('fetch_login'),
+    'login/fetchLogin': {
+      name: Raw('fetchLogin'),
     },
-    'login/fetch_register': {
-      name: Raw('fetch_register'),
+    'login/fetchRegister': {
+      name: Raw('fetchRegister'),
     },
   },
 });
 
 export const {
-  fetch_login,
-  fetch_register,
+  fetchLogin,
+  fetchRegister,
 } = LoginModel.actions;

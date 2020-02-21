@@ -1,6 +1,6 @@
-import {  createStore, applyMiddleware, Middleware, Store } from 'redux';
-import { rootReducer, ReduxState } from './root-reducer';
+import { createStore, applyMiddleware, Middleware, Store } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { rootReducer, ReduxState } from './root-reducer';
 import { rootSaga } from './root-saga';
 
 export type StoreType = Store<ReduxState>;
@@ -13,7 +13,7 @@ const sagaMiddleware = createSagaMiddleware({
   },
 });
 
-export let createCustomStore =  () : Store<ReduxState> => {
+export const createCustomStore = ():Store<ReduxState> => {
   const middlewares:Middleware[] = [sagaMiddleware].filter(Boolean);
 
   // 注入 saga middleware
@@ -23,8 +23,8 @@ export let createCustomStore =  () : Store<ReduxState> => {
 
   const stateStore:any = createStoreWithMidddleware(
     rootReducer,
-    DEBUG && (window as any).__REDUX_DEVTOOLS_EXTENSION__
-      && (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
+    DEBUG && (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+      (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
   );
   return stateStore;
 };

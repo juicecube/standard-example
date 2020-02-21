@@ -6,7 +6,7 @@ import { storeManage, TODO_LIST_DATA, DATE_LIST_DATA, USER_INFO_DATA, LOCAL, SES
 export const todayDateStr = superDate.format(new Date().getTime(), 'yyyy-mm-dd');
 
 const getNewDefaultTodoListItemData = (date:string) => {
-  const uuid = new Date().getTime() + '';
+  const uuid = `${new Date().getTime() }`;
   const newDefaultTodoListItemData:TodoDataInfo = {
     id: uuid,
     date,
@@ -25,16 +25,14 @@ export const fakeDateListData = () => {
 
   if (data.filter((item) => item.date === todayDateStr).length < 1) {
     data.push({
-      id: new Date().getTime() + '',
+      id: `${new Date().getTime() }`,
       date: todayDateStr,
     });
     storeManage.set(DATE_LIST_DATA, data, LOCAL);
   }
 
   return({
-    getter: () => {
-      return data;
-    },
+    getter: () => data,
     adder: (newDataItem:FakeDateListDataType) => {
       data.push(newDataItem);
       storeManage.set(DATE_LIST_DATA, data, LOCAL);
@@ -45,9 +43,7 @@ export const fakeDateListData = () => {
 export const fakeTodoListData = () => {
   let data:TodoDataInfo[] = storeManage.get(TODO_LIST_DATA, LOCAL) || [];
   return({
-    getter: (date:string) => {
-      return data.filter((item) => item.date === date);
-    },
+    getter: (date:string) => data.filter((item) => item.date === date),
     setter: (newData:TodoDataInfo) => {
       const handledData = upDateObjectArrayValue({
         sourceObjectArray: data,
@@ -104,7 +100,7 @@ export const fakeUserInfoData = () => {
       if (userInfo.length > 0) {
         throw new Error('该用户名已存在');
       }
-      const userId = new Date().getTime() + '';
+      const userId = `${new Date().getTime() }`;
       const newDataItem = {
         userName: newItem.userName || '',
         userId,
@@ -124,7 +120,7 @@ export const fakeUserInfoData = () => {
         throw new Error('此用户不存在');
       }
       if (userInfo[0].password === password) {
-        const authentication = new Date().getTime() + 'token';
+        const authentication = `${new Date().getTime() }token`;
         return { authentication, userId: userInfo[0].userId };
       } else {
         throw new Error('用户名或密码不正确');

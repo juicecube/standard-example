@@ -12,10 +12,13 @@
     "test:e2e-open": "yuumi test:e2e-open",
     "test:e2e-run": "yuumi test:e2e-run",
     "test:e2e-run-s": "yuumi test:e2e-run -s",
-    "test:e2e-run-r": "yuumi test:e2e-run -r"
+    "test:e2e-run-r": "yuumi test:e2e-run -r",
+    "lint": "eslint src/**/*.ts"
   },
   "husky": {
     "hooks": {
+      "pre-commit": "npm run lint",
+      "commit-msg": "commitlint -e $GIT_PARAMS",
       "pre-push": "npm run test:unit"
     }
   },
@@ -46,9 +49,11 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@mlz/cli-plugin-e2e-test": "^1.0.7",
     "@mlz/cli-plugin-unit-jest": "^1.1.5",
-    "@mlz/lint": "^1.0.10",
+    "@mlz/lint": "^1.1.10",
     "@mlz/pack": "^0.1.8",
     "@types/classnames": "^2.2.9",
     "@types/jest": "^24.0.22",
@@ -61,6 +66,8 @@
     "@types/react-router-dom": "^5.1.1",
     "@types/redux": "^3.6.0",
     "cypress": "^3.6.0",
+    "eslint": "^6.8.0",
+    "husky": "^3.0.9",
     "jest": "^24.9.0",
     "redux-saga-test-plan": "^4.0.0-rc.2",
     "ts-jest": "^24.1.0",

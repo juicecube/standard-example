@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import * as cn from 'classnames';
-import { fetch_login, fetch_register } from 'example/redux/login/index';
+import { fetchLogin, fetchRegister } from 'example/redux/login/index';
 import { storeManage, USER_TOKEN, USER_ID, SESSION } from 'example/utils/storage-manage';
 import { UserInfoFormComp } from 'example/pages/login/components/user-info-form';
 import { AddUserInfoData } from 'example/api/fake-data';
@@ -33,7 +33,7 @@ const Login:React.FunctionComponent = (props) => {
       return;
     }
     console.log('click login');
-    dispatch(fetch_login({
+    dispatch(fetchLogin({
       userName,
       password,
       cb: (res:any) => {
@@ -51,7 +51,7 @@ const Login:React.FunctionComponent = (props) => {
   };
 
   const onRegisterSubmit = (submitData:AddUserInfoData) => {
-    dispatch(fetch_register({
+    dispatch(fetchRegister({
       userName: submitData.userName,
       age: submitData.age,
       gender: submitData.gender,
@@ -67,43 +67,44 @@ const Login:React.FunctionComponent = (props) => {
 
   return (
     <div styleName="login_wrap">
-        <div styleName="content_container">
-          <div styleName="content_header">
-            <div styleName="content_header_left">
-              <span>TODO LIST</span>
-            </div>
-            <div styleName="content_header_right">
-              <ul styleName="header_option_container">
-                <li styleName={cn({ 'selected': selectedTab === REGISTER })} onClick={() => onTabClick(REGISTER)}><span styleName="register_icon"></span>注册</li>
-                <li styleName={cn({ 'selected': selectedTab === LOGIN })} onClick={() => onTabClick(LOGIN)}><span styleName="login_icon"></span>登陆</li>
-              </ul>
-            </div>
+      <div styleName="content_container">
+        <div styleName="content_header">
+          <div styleName="content_header_left">
+            <span>TODO LIST</span>
           </div>
-          {
-            selectedTab === LOGIN
-              ? <div styleName="login_box">
-                  <header styleName="login_header">
-                    <p>LOGIN</p>
-                  </header>
-                  <div styleName="option_container">
-                    <div styleName="btn_box">
-                      <input type="text" id="username" value={userName} onChange={(e) => onUsernameChange(e)} placeholder="用户名" />
-                      <i styleName="login_user" aria-hidden="true"></i>
-                    </div>
-                    <div styleName="btn_box_radius">
-                      <input type="password" id="password" value={password} onChange={(e) => onPassWordChange(e)} placeholder="密码" maxLength={12}/>
-                      <i styleName="login_lock" aria-hidden="true"></i>
-                    </div>
-                    <button styleName="login_button" onClick={onLoginClick}>登录</button>
-                  </div>
-                </div>
-              : <div styleName="register_container">
-                  <UserInfoFormComp onSubmit={(submitData:AddUserInfoData) => onRegisterSubmit(submitData)} />
-                </div>
-          }
+          <div styleName="content_header_right">
+            <ul styleName="header_option_container">
+              <li styleName={cn({ 'selected': selectedTab === REGISTER })} onClick={() => onTabClick(REGISTER)}><span styleName="register_icon"></span>注册</li>
+              <li styleName={cn({ 'selected': selectedTab === LOGIN })} onClick={() => onTabClick(LOGIN)}><span styleName="login_icon"></span>登陆</li>
+            </ul>
+          </div>
         </div>
+        {
+          selectedTab === LOGIN
+            ? <div styleName="login_box">
+              <header styleName="login_header">
+                <p>LOGIN</p>
+              </header>
+              <div styleName="option_container">
+                <div styleName="btn_box">
+                  <input type="text" id="username" value={userName} onChange={(e) => onUsernameChange(e)} placeholder="用户名" />
+                  <i styleName="login_user" aria-hidden="true"></i>
+                </div>
+                <div styleName="btn_box_radius">
+                  <input type="password" id="password" value={password} onChange={(e) => onPassWordChange(e)} placeholder="密码" maxLength={12}/>
+                  <i styleName="login_lock" aria-hidden="true"></i>
+                </div>
+                <button styleName="login_button" onClick={onLoginClick}>登录</button>
+              </div>
+            </div>
+            : <div styleName="register_container">
+              <UserInfoFormComp onSubmit={(submitData:AddUserInfoData) => onRegisterSubmit(submitData)} />
+            </div>
+        }
       </div>
+    </div>
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default React.memo(Login);
