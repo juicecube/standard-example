@@ -1,4 +1,4 @@
-import { createModel, Raw } from 'rdx-model';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface LoginSate {
   test:string;
@@ -8,15 +8,12 @@ const defaultState:LoginSate = {
   test: '',
 };
 
-export const LoginModel = createModel({
-  state: defaultState,
+export const LoginModel = createSlice({
+  name: 'login',
+  initialState: defaultState,
   reducers: {
-    'login/fetchLogin': {
-      name: Raw('fetchLogin'),
-    },
-    'login/fetchRegister': {
-      name: Raw('fetchRegister'),
-    },
+    fetchLogin: (state) => state,
+    fetchRegister: (state) => state,
   },
 });
 

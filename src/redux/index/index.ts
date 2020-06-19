@@ -1,5 +1,6 @@
 // 定义actions和reducer
-import { createModel, Raw, Action } from 'rdx-model';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { ReduxState } from '../root-reducer';
 
 export interface DateListType {
@@ -47,40 +48,30 @@ export const defaultState:IndexState = {
   },
 };
 
-// Action && Reducer
-export const indexModel = createModel({
-  state: defaultState,
+export const TodoModel = createSlice({
+  name: 'todo',
+  initialState: defaultState,
   reducers: {
-    'index/fetchDateListAction': {
-      name: Raw('fetchDateListAction'),
+    fetchDateListAction: (state) => state,
+    fetchUserInfoAction: (state) => state,
+    addTodoListDataSource: (state) => state,
+    deleteTodoListDataSource: (state) => state,
+    updateTodoListDataSource: (state) => state,
+    updateDateList: (state:IndexState, action:PayloadAction<DateListType[]>):IndexState => {
+      state.dateList = action.payload;
+      return state;
     },
-    'index/updateDateList': {
-      name: Raw('updateDateList'),
-      reducer: (state:IndexState, action:Action<DateListType[]>):IndexState => ({ ...state, dateList: (action.payload as []) }),
+    updateUserInfo: (state:IndexState, action:PayloadAction<UserInfo>):IndexState => {
+      state.userInfo = action.payload;
+      return state;
     },
-    'index/fetchUserInfoAction': {
-      name: Raw('fetchUserInfoAction'),
+    updateTodoList: (state:IndexState, action:PayloadAction<TodoDataInfo[]>):IndexState => {
+      state.todoList = action.payload;
+      return state;
     },
-    'index/updateUserInfo': {
-      name: Raw('updateUserInfo'),
-      reducer: (state:IndexState, action:Action<UserInfo>):IndexState => ({ ...state, userInfo: (action.payload as UserInfo) }),
-    },
-    'index/addTodoListDataSource': {
-      name: Raw('addTodoListDataSource'),
-    },
-    'index/deleteTodoListDataSource': {
-      name: Raw('deleteTodoListDataSource'),
-    },
-    'index/updateTodoListDataSource': {
-      name: Raw('updateTodoListDataSource'),
-    },
-    'index/updateTodoList': {
-      name: Raw('updateTodoList'),
-      reducer: (state:IndexState, action:Action<TodoDataInfo[]>):IndexState => ({ ...state, todoList: (action.payload as []) }),
-    },
-    'index/updateSelectDate': {
-      name: Raw('updateSelectDate'),
-      reducer: (state:IndexState, action:Action<string>):IndexState => ({ ...state, selectDate: action.payload || '' }),
+    updateSelectDate: (state:IndexState, action:PayloadAction<string>):IndexState => {
+      state.selectDate = action.payload;
+      return state;
     },
   },
 });
@@ -99,4 +90,4 @@ export const {
   updateTodoListDataSource,
   deleteTodoListDataSource,
   addTodoListDataSource,
-} = indexModel.actions;
+} = TodoModel.actions;
