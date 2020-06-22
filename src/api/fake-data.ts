@@ -1,7 +1,7 @@
 import { superDate } from '@mlz/super-utils';
 import { TodoDataInfo } from 'example/redux/index/index';
 import { upDateObjectArrayValue } from 'example/utils/index';
-import { storeManage, TODO_LIST_DATA, DATE_LIST_DATA, USER_INFO_DATA, LOCAL, SESSION } from 'example/utils/storage-manage';
+import { storeManage, TODO_LIST_DATA, DATE_LIST_DATA, USER_INFO_DATA, LOCAL } from 'example/utils/storage-manage';
 
 export const todayDateStr = superDate.format(new Date().getTime(), 'yyyy-mm-dd');
 
@@ -84,7 +84,7 @@ export interface AddUserInfoData {
 }
 
 export const fakeUserInfoData = () => {
-  const data:UserInfoData[] = storeManage.get(USER_INFO_DATA, SESSION) || [];
+  const data:UserInfoData[] = storeManage.get(USER_INFO_DATA, LOCAL) || [];
 
   return ({
     getter: (id:string) => {
@@ -110,7 +110,7 @@ export const fakeUserInfoData = () => {
         gender: newItem.gender,
       };
       data.push(newDataItem);
-      storeManage.set(USER_INFO_DATA, data, SESSION);
+      storeManage.set(USER_INFO_DATA, data, LOCAL);
       return true;
     },
     checker: (loginData:any) => {

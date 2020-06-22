@@ -14,9 +14,6 @@ describe('sagas test', () => {
         [call(fetchDateList), fakeDateList],
       ])
       .withReducer(TodoModel.reducer)
-      // .hasFinalState({
-      //   dateList: [{ date: '2019-10-31', id: '123pp', isToday: false }],
-      // })
       .put(updateDateList([{ date: '2019-10-31', id: '123pp', isToday: false }]))
       .run();
   });

@@ -1,40 +1,38 @@
 import * as React from 'react';
+import { Suspense, lazy } from 'react';
 import { RouteProps } from 'react-router-dom';
-import * as Loadable from 'react-loadable';
+import { ErrorBoundary } from 'example/components/error-boundary';
 
-const MyLoadingComponent = ({ pastDelay, error }:any) => {
-  if (pastDelay) {
-    return <div style={{ backgroundColor: 'red' }}>Loading...</div>;
-  } else if (error) {
-    return <div>Sorry, there was a problem loading the page.</div>;
-  } else {
-    return null;
-  }
-};
-
-const _loadable = (loadFunc:any) => {
-  return Loadable({
-    loader: loadFunc,
-    loading: MyLoadingComponent,
-    delay: 500,
-  });
+export const _lazy = (loadFunc:() => Promise<any>) => {
+  const Component = lazy(loadFunc);
+  return () => (
+    <Suspense fallback={
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+        Loading...
+      </div>}
+    >
+      <ErrorBoundary>
+        <Component />
+      </ErrorBoundary>
+    </Suspense>
+  );
 };
 
 /**
  * 全局路由表
  */
-export let routes:RouteProps[] = [
+export const routes:RouteProps[] = [
   {
     path: '/login',
     exact: true,
-    component: _loadable(() => import('./login')),
+    component: _lazy(() => import('./login')),
   },
   {
     path: '/',
     exact: true,
-    component: _loadable(() => import('./index')),
+    component: _lazy(() => import('./index')),
   },
   {
-    component: _loadable(() => import('../components/page-not-found')),
+    component: _lazy(() => import('../components/page-not-found')),
   },
 ];
