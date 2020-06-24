@@ -12,7 +12,7 @@ export const LoginModel = createSlice({
   name: 'login',
   initialState: defaultState,
   reducers: {
-    fetchLogin: (state) => state,
+    fetchLogin: (state, action:PayloadAction<{userName:string;password:string}>) => state,
     fetchRegister: (state) => state,
   },
 });

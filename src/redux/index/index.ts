@@ -54,9 +54,9 @@ export const TodoModel = createSlice({
   reducers: {
     fetchDateListAction: (state) => state,
     fetchUserInfoAction: (state) => state,
-    addTodoListDataSource: (state) => state,
-    deleteTodoListDataSource: (state) => state,
-    updateTodoListDataSource: (state) => state,
+    addTodoListDataSource: (state, action:PayloadAction<string>) => state,
+    deleteTodoListDataSource: (state, action:PayloadAction<string>) => state,
+    updateTodoListDataSource: (state, action:PayloadAction<TodoDataInfo>) => state,
     updateDateList: (state:IndexState, action:PayloadAction<DateListType[]>):IndexState => {
       state.dateList = action.payload;
       return state;
