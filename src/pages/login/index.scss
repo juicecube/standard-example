@@ -1,6 +1,5 @@
-.vh-center{
+.vh-center {
   display:flex;
-  flex-direction:row;
   justify-content:center;
   align-items:center;
 }
@@ -15,23 +14,10 @@
   height: 100%;
   width: 100%;
   background-color: #FFFFFF;
-  background-size: 100% 100%;
-  background: url('~example/commons/images/see.jpg') no-repeat;
-  background-size: cover;
-}
-.login_wrap::before {
-  display: block;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 .content_container {
   @extend .vh-center;
+  flex-direction: column;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -40,16 +26,21 @@
   z-index: 3;
 }
 .content_header {
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
+  @extend .vh-center;
   width: 100%;
-  height: 60px;
-  top: 0;
-  right: 0;
-  padding: 0 60px;
-  // background-color:rgba(255, 255, 255, 0.2);
-  color: white;
+  .icon_logo {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background: url('~example/commons/images/juicecube.png');
+    background-size: cover;
+    margin: 20px;
+  }
+  h1 {
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
 }
 .content_header_left, .content_header_right {
   @extend .vh-center;
@@ -72,7 +63,7 @@
 .selected {
   background-color: rgba(255, 255, 255, 0.1);
 }
-.login_box{
+.login_box {
   position: relative;
   width: 346px;
   background-color: white;
@@ -80,23 +71,10 @@
   padding: 45px 10px 20px 10px;
   border-radius: 5px;
 }
-.login_header {
-  @extend .vh-center;
-  height: 55px;
-  width: 300px;
-  position: absolute;
-  top: -30px;
-  right: 25px;
-  font-size: 20px;
-  font-weight: lighter;
-  color: white;
-  background: linear-gradient(60deg, #ec407a, #d81b60);
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4);
-}
-.option_container{
+.option_container {
   padding: 10px 26px;
 }
-.btn_box{
+.btn_box {
   @extend .vh-center;
   height: 46px;
   border: 1px solid #D9D9D9;
@@ -105,19 +83,19 @@
   border-radius: 4px 4px 0 0;
   border-bottom: 0;
 }
-.btn_box_radius{
+.btn_box_radius {
   @extend .vh-center;
   @extend .btn_box;
   border-bottom: 1px solid #D9D9D9;
   border-radius: 0 0 4px 4px;
 }
-.btn_box .login_user{
+.btn_box .login_user {
   background-position: 0px 53px;
 }
-.btn_box .login_lock{
+.btn_box .login_lock {
   background-position: 0px 21px;
 }
-.login_button{
+.login_button {
   margin-top: 30px;
   width: 100%;
   height: 48px;
@@ -134,7 +112,7 @@
     background-color: #ec407a;
   }
 }
-.btn_box input{
+.btn_box input {
   height: 30px;
   width: 250px;
   margin-right: 10px;
@@ -144,13 +122,7 @@
   color: rgba(0, 0, 0, 0.87);
   font-size: 18px;
 }
-.btn_box input::-webkit-input-placeholder{
-  color: #CCCCCC;
-}
-.btn_box input::-moz-placeholder{
-  color: #CCCCCC;
-}
-.btn_box input:-ms-input-placeholder{
+.btn_box input::placeholder {
   color: #CCCCCC;
 }
 .register_icon {

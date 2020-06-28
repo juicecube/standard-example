@@ -69,22 +69,21 @@ const Login:React.FunctionComponent = (props) => {
     <div styleName="login_wrap">
       <div styleName="content_container">
         <div styleName="content_header">
-          <div styleName="content_header_left">
-            <span>TODO LIST</span>
+          <i styleName="icon_logo"></i>
+          <div>
+            <h1>Welcome to TodoList example project!</h1>
+            <p>这里将以简单的TodoList为示例，演示react全家桶和最佳实践。</p>
           </div>
-          <div styleName="content_header_right">
+          {/* <div styleName="content_header_right">
             <ul styleName="header_option_container">
               <li styleName={cn({ 'selected': selectedTab === REGISTER })} onClick={() => onTabClick(REGISTER)}><span styleName="register_icon"></span>注册</li>
               <li styleName={cn({ 'selected': selectedTab === LOGIN })} onClick={() => onTabClick(LOGIN)}><span styleName="login_icon"></span>登陆</li>
             </ul>
-          </div>
+          </div> */}
         </div>
         {
           selectedTab === LOGIN
             ? <div styleName="login_box">
-              <header styleName="login_header">
-                <p>LOGIN</p>
-              </header>
               <div styleName="option_container">
                 <div styleName="btn_box">
                   <input type="text" id="username" value={userName} onChange={(e) => onUsernameChange(e)} placeholder="用户名" />
