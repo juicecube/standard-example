@@ -71,15 +71,11 @@ export interface UserInfoData {
   userId:string;
   password:string;
   avatar:string;
-  age:number;
-  gender:'男'|'女'|'';
 }
 
 export interface AddUserInfoData {
   userName:string;
   password:string;
-  age:number|undefined;
-  gender:'男'|'女'|'';
 }
 
 export const fakeUserInfoData = () => {
@@ -89,7 +85,7 @@ export const fakeUserInfoData = () => {
     getter: (id:string) => {
       const resData = data.filter((item) => item.userId === id);
       if (resData.length <= 0) {
-        throw new Error('此用户不存在');
+        throw { code: 404, info: '此用户不存在' };
       }
       delete resData[0].password;
       return resData[0];
@@ -97,7 +93,7 @@ export const fakeUserInfoData = () => {
     adder: (newItem:AddUserInfoData) => {
       const userInfo = data.filter((item) => item.userName === newItem.userName);
       if (userInfo.length > 0) {
-        throw new Error('该用户名已存在');
+        throw { code: 402, info: '该用户名已存在' };
       }
       const userId = `${new Date().getTime() }`;
       const newDataItem = {
@@ -105,8 +101,6 @@ export const fakeUserInfoData = () => {
         userId,
         password: newItem.password,
         avatar: '',
-        age: newItem.age || 0,
-        gender: newItem.gender,
       };
       data.push(newDataItem);
       storeManage.set(USER_INFO_DATA, data, LOCAL);
@@ -116,13 +110,13 @@ export const fakeUserInfoData = () => {
       const { userName, password } = loginData;
       const userInfo = data.filter((item) => item.userName === userName);
       if (userInfo.length <= 0) {
-        throw new Error('此用户不存在');
+        throw { code: 404, info: '此用户不存在' };
       }
       if (userInfo[0].password === password) {
         const authentication = `${new Date().getTime() }token`;
         return { authentication, userId: userInfo[0].userId };
       } else {
-        throw new Error('用户名或密码不正确');
+        throw { code: 401, info: '用户名或密码不正确' };
       }
     },
   });

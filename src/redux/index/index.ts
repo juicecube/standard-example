@@ -1,5 +1,5 @@
 // 定义actions和reducer
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createSelector } from '@reduxjs/toolkit';
 
 import { ReduxState } from '../root-reducer';
 
@@ -61,8 +61,8 @@ export const TodoModel = createSlice({
       state.dateList = action.payload;
       return state;
     },
-    updateUserInfo: (state:IndexState, action:PayloadAction<UserInfo>):IndexState => {
-      state.userInfo = action.payload;
+    updateUserInfo: (state:IndexState, action:PayloadAction<Partial<UserInfo>>):IndexState => {
+      state.userInfo = { ...state.userInfo, ...action.payload };
       return state;
     },
     updateTodoList: (state:IndexState, action:PayloadAction<TodoDataInfo[]>):IndexState => {
@@ -79,6 +79,13 @@ export const TodoModel = createSlice({
 // 简单的selector定义在相关的model中
 export const selectSelectedDate = (state:ReduxState) => state.indexState.selectDate;
 export const selectTodoList = (state:ReduxState) => state.indexState.todoList;
+export const selectUserInfo = createSelector(
+  (state:ReduxState) => {
+    console.log(state);
+    return state.indexState;
+  },
+  (indexState) => indexState.userInfo,
+);
 
 export const {
   fetchDateListAction,

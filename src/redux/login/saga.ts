@@ -1,34 +1,36 @@
-import { fork, take, call } from 'redux-saga/effects';
+import { fork, take, call, put } from 'redux-saga/effects';
+
 import { login, register } from 'example/api/fake-api';
-import { fetchLogin, fetchRegister } from './index';
+import { storeManage, USER_TOKEN, SESSION } from 'example/utils/storage-manage';
+import { updateUserInfo } from '../index';
+import { fetchLogin } from './index';
 
 export function* loginSaga() {
   yield fork(watchFetchLogin);
-  yield fork(watchFetchRegister);
 }
 
 export function* watchFetchLogin() {
   try {
     while (true) {
       const action = yield take(fetchLogin);
-      const { userName, password, cb } = action.payload;
-      const res = yield call(login, { userName, password });
-      res && cb && cb(res);
+      yield put(updateUserInfo({ userId: 'fetching' }));
+      const { userName, password } = action.payload;
+      const account = { userName, password };
+      try {
+        const res = yield call(login, { userName, password });
+        storeManage.set(USER_TOKEN, res.authentication, SESSION);
+      } catch(e) {
+        if (e.code === 404) {
+          yield call(register, { userName, password });
+        } else {
+          throw new Error('密码错误！');
+        }
+      }
+      yield put(updateUserInfo(account));
+      window.browserHistory.push('/');
     }
   } catch (e) {
-    window.alert(e.message);
-  }
-}
-
-export function* watchFetchRegister() {
-  try {
-    while (true) {
-      const action = yield take(fetchRegister);
-      const { userName, age, gender, password, cb } = action.payload;
-      const res = yield call(register, { userName, age, gender, password });
-      res && cb && cb(res);
-    }
-  } catch (e) {
+    yield put(updateUserInfo({ userId: '' }));
     window.alert(e.message);
   }
 }

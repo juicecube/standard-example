@@ -27,6 +27,7 @@ type IndexProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDisp
 export class Index extends React.PureComponent<IndexProps> {
 
   componentDidMount() {
+    console.log('xxx');
     this.props.fetchDateListAction();
     this.props.fetchUserInfoAction();
   }
